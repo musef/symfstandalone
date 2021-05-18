@@ -1,0 +1,68 @@
+{% extends 'components/main.html.twig' %}
+
+{% block title %}Compra finalizada{% endblock %}
+
+{% block migas %}{% endblock %}
+
+{% block content %}
+
+  <div class="col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
+    <div class="box mod-purchasing-process-thank-you">
+      <div class="mod-purchasing-process-thank-you-info">
+        <h1 class="title-page">
+          <span class="font-md">
+            ¡Gracias por confiar en nosotros!
+          </span>
+        </h1>
+        <div class="mod-purchasing-process-thank-you-info-data">
+          <span class="mod-purchasing-process-thank-you-info-data-text">El número de tu pedido es
+          </span>
+          <span class="mod-purchasing-process-thank-you-info-data-text mod-purchasing-process-thank-you-info-data-text-number">{{pedido}}</span>
+          <p class="mod-purchasing-process-thank-you-info-data-message">Puedes hacer el seguimiento de tu pedido
+            <a class="text-link-default" href="#">aquí</a>. En las próximas 24 horas un experto se pondrá en contacto contigo para concretar la fecha de de instalación de la fibra.
+          </p>
+        </div>
+        <div class="btn-group">
+          <a title="link title" href="#" class="btn btn-default btn-md btn-icon btn-icon-sm">
+            Comprobante de venta
+            <svg class="icon-svg" width="18" height="17" viewbox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M5.15039 8.67799V1.67799C5.15282 0.850574 5.82297 0.180421 6.65039 0.177994H11.6504C12.4778 0.180421 13.148 0.850574 13.1504 1.67799V8.67799H17.6504L10.5076 15.6352C10.1421 15.9843 9.65584 16.1787 9.15039 16.178C8.64497 16.1787 8.15879 15.9842 7.79325 15.6352L0.650391 8.67799H5.15039Z" fill="black"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+      <div class="mod-purchasing-process-thank-you-tracking">
+        <div class="mod-purchasing-process-thank-you-tracking-container">
+          <div class="tracking">
+            <div class="tracking-step">
+              <span>
+                <strong>Mail confirmación</strong>
+              </span>
+              <div class="tracking-step-line">
+                <div class="tracking-step-line-ball tracking-step-line-ball-completed"></div>
+              </div>
+              <span class="tracking-step-info">Te enviamos un correo electrónico de confirmación con toda la información de tu compra</span>
+            </div>
+            <div class="tracking-step">
+              <span>
+                <strong>Entrega</strong>
+              </span>
+              <div class="tracking-step-line">
+                <div class="tracking-step-line-ball tracking-step-line-ball-current"></div>
+              </div>
+              <span class="tracking-step-info">Dentro del plazo del pedido se realizará la entrega previa confirmación de la fecha y hora por el transportista
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mod-purchasing-process-thank-you-img">
+        <img src="{{ asset('img/ilustracion-comprobante-compra.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block carrito %}{% endblock %}

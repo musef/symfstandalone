@@ -1,0 +1,29 @@
+<div class="mod-purchasing-process-form-button mod-purchasing-process-form-button-bordered">
+  <div class="btn-group">
+    {% if vdisabled is defined %}
+
+    {% else %}
+
+      {% if url_volver is not defined %}
+        {% set url_volver = "#" %}
+      {% endif %}
+
+      <button id="volver" name="volver" class="btn btn-default btn-md" title="Volver atrás" formaction="{{url_volver}}">Volver</button>
+
+    {% endif %}
+
+    {% if cdisabled is defined %}
+
+      <button type="submit" name="continuar" id="continuar-a-datos" class="btn btn-primary btn-md disabled" title="No puede continuar" formaction="#">Continuar</button>
+
+    {% else %}
+
+      {% if url_continuar is not defined %}
+        {% set url_continuar="#"%}
+      {% endif %}
+
+      <button type="submit" name="continuar" id="continuar-a-datos" class="btn btn-primary btn-md" title="Siguiente página" formaction="{{url_continuar}}">Continuar</button>
+    {% endif %}
+
+  </div>
+</div>

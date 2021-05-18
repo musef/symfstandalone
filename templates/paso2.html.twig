@@ -1,0 +1,35 @@
+{% extends 'components/main.html.twig' %}
+
+{% block title %}Datos personales{% endblock %}
+
+{% block content %}
+
+  <div class="col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-8">
+    <div class="mod-purchasing-process">
+      <div class="mod-purchasing-process-header">
+        <h1 class="title-page">
+          <span class="font-md">
+            Ahora necesitamos los datos personales del titular
+          </span>
+        </h1>
+      </div>
+
+      <div class="mod-purchasing-process-form">
+        {{include('components/_formulario_datos.html.twig')}}
+      </div>
+
+      <form method="post">
+        {{include('components/_botones.html.twig')}}
+      </form>
+
+    </div>
+    <img src="{{ asset('img/ilustracion-promo-producto-2.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
+  </div>
+
+{% endblock %}
+
+{% block javascript_modules %}
+  {{  parent() }}
+  <script src="{{ asset('js/paso2.js') }}"></script>
+
+{% endblock %}

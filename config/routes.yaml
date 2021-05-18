@@ -1,0 +1,8 @@
+#index:
+#  path: /
+#  controller: App\Controller\InitController::init
+
+#paso1:
+#  path: /paso1
+#  controller: App\Controller\InitController::init2
+

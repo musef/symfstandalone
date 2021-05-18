@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}Title{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles-library.css" rel="stylesheet">
+    <link href="css/oms-styles-ext.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+  </head>
+
+  <body class="orange-cms">
+    <header class="oms-external header-orange">
+      <div class="container-fluid-flex-oms-external">
+        <div class="row-flex-oms-external">
+          <div class="box-oms-external">
+            <div class="container-flex-oms-external">
+              <div class="col-flex-xs-oms-external-12 col-flex-sm-oms-external-12 col-flex-md-oms-external-12 col-flex-lg-oms-external-12">
+                <div class="header-responsive-default">
+                  <div class="header-responsive-default-logo">
+                    <div class="header-responsive-default-logo-img"></div>
+                    <a href="#" class="btn-block-oms-external" title="Ir a la Home" target="_self">Ir a la Home</a>
+                  </div>
+                  <div class="header-responsive-default-info">
+                    <ul class="header-responsive-default-info-quicklinks">
+                      <li class="header-responsive-default-info-quicklinks-item">
+                        <svg class="header-responsive-default-info-quicklinks-item-img header-responsive-default-info-quicklinks-item-align-bottom" width="20" height="19" viewbox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8 0H0.400024V12.6C0.400024 13.5941 1.20591 14.4 2.20002 14.4H4.60002V18.6L8.80002 14.4H19.6V1.8C19.6 0.805887 18.7941 0 17.8 0ZM5.77602 4.2C6.43877 4.2 6.97602 4.73726 6.97602 5.4C6.97602 6.06274 6.43877 6.6 5.77602 6.6C5.11328 6.6 4.57602 6.06274 4.57602 5.4C4.57602 4.73726 5.11328 4.2 5.77602 4.2ZM14.176 4.2C14.8388 4.2 15.376 4.73726 15.376 5.4C15.376 6.06274 14.8388 6.6 14.176 6.6C13.5133 6.6 12.976 6.06274 12.976 5.4C12.976 4.73726 13.5133 4.2 14.176 4.2ZM13 9.3C12.9986 8.80354 12.5965 8.40145 12.1 8.4H7.90002C7.40357 8.40145 7.00147 8.80354 7.00002 9.3V9.6C7.00002 10.2627 8.34316 10.8 10 10.8C11.6569 10.8 13 10.2627 13 9.6V9.3Z" fill="white"/>
+                        </svg>
+                        <span class="header-responsive-default-info-quicklinks-item-label">
+                          <a href="{{'index'}}" class="btn-block-oms-external" title="Identificarse" target="_self">Identificarse</a>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid-flex">
+      <div class="row-flex">
+        {% block migas %}
+          {{ include ("components/_migas.html.twig") }}
+        {% endblock %}
+        <div class="row-flex">
+          <div class="box">
+            <div class="container-flex">
+              {% block content %}{% endblock %}
+              {% block carrito %}
+                {{ include ("components/_carrito.html.twig") }}
+              {% endblock %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <footer class="oms-external footer-orange oms-external-bg-black">
+        <div class="container-fluid-flex-oms-external">
+          <div class="row-flex-oms-external">
+            <div class="box-oms-external">
+              <div class="container-flex-oms-external">
+                <div class="col-flex-xs-oms-external-12 col-flex-sm-oms-external-12 col-flex-md-oms-external-12 col-flex-lg-oms-external-12">
+                  <div class="footer-responsive-default">
+                    <ul class="footer-responsive-default-quicklinks">
+                      <li class="footer-responsive-default-quicklinks-item">© fmsdevelopment 2021</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {% block javascript_modules %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      {% endblock %}
+
+    </body>
+
+  </html>

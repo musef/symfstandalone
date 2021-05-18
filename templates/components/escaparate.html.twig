@@ -1,0 +1,25 @@
+<div class="box bg-lightgrey">
+  <div class="container-flex">
+    <div class="col-flex-xs-12 col-flex-sm-12 col-flex-md-12 col-flex-lg-12">
+
+      {% if productos is defined%}
+        {% for producto in productos %}
+          <div class="step-form-counter bg-lightgrey">
+            <div class="step-container">
+              <div class="esc-producto color-darkgrey" id="prd_{{producto.id}}" data-sel="{{producto.id}}" data-price="{{producto.precio_promo}}">
+                <div class="prod-number">
+                  <span class="producto" id="name_prd_{{producto.id}}">{{producto.nombre}}</span>
+                </div>
+                <span class="step-title">Precio promo:
+                  {{producto.precio_promo}}€</span>
+                <span class="step-title font-small">Después:
+                  {{producto.precio_base}}€</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+    </div>
+  </div>
+</div>

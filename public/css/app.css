@@ -1,0 +1,14 @@
+.escaparate {
+    min-height: 150px;
+    height: 150px;
+}
+
+.esc-producto {
+    height: 150px;
+    width: 150px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    color: orange;
+    border: 2px solid black;
+}

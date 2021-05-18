@@ -1,0 +1,34 @@
+{% extends 'components/main.html.twig' %}
+
+{% block title %}Escaparate{% endblock %}
+
+{% block content %}
+
+  <div class="col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-8">
+    <div class="mod-purchasing-process">
+      <div class="mod-purchasing-process-header">
+        <h1 class="title-page">
+          <span class="font-md">
+            Elige tu producto en el escaparate
+          </span>
+        </h1>
+        <br/>
+        <div id="escaparate" class="escaparate">
+          {{include('components/escaparate.html.twig')}}
+
+        </div>
+      </div>
+      <form method="post">
+        {{include('components/_botones.html.twig')}}
+      </form>
+      <img src="{{ asset('img/ilustracion-promo-producto.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block javascript_modules %}
+  {{  parent() }}
+  <script src="{{ asset('js/index.js') }}"></script>
+
+{% endblock %}

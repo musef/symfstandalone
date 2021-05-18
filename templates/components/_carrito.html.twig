@@ -1,0 +1,140 @@
+<div class="col-flex-xs-12 col-flex-sm-4 col-flex-md-4 col-flex-lg-4">
+  <div class="cart-desktop-fixed mod-purchasing-process">
+    <div class="cart-desktop-fixed-container">
+      <div class="cart-desktop-fixed-item-container">
+        <h1 class="title-md">Resumen de compra</h1>
+
+        <div class="cart-desktop-fixed-item-product" id="listaproductos">
+          <h2 class="cart-desktop-fixed-item-product-title">Lista productos</h2>
+          <dl class="cart-desktop-fixed-item-product-list">
+            <dt class="cart-desktop-fixed-item-product-list-term">
+              <a title="link title" class="text-link-default text-bold" href="#">Añadir productos</a>
+            </dt>
+            <dd class="cart-desktop-fixed-item-product-list-description list with-button" data-promoted="yes">
+              <div class="btn-group">
+                <button type="button" name="más información" data-target=".modal" data-toggle="modal" class="btn-list-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon-svg" fill="none" viewbox="0 0 102 102" width="22" height="22">
+                    <path clip-rule="evenodd" fill="black" fill-rule="evenodd" d="M 51 0 C 22.8336 0 0 22.8336 0 51 C 0 79.1664 22.8336 102 51 102 C 79.1664 102 102 79.1664 102 51 C 102 22.8336 79.1664 0 51 0 Z M 51.0001 11.9996 C 55.9707 11.9996 60.0001 16.029 60.0001 20.9996 C 60.0001 25.9702 55.9707 29.9996 51.0001 29.9996 C 46.0295 29.9996 42.0001 25.9702 42.0001 20.9996 C 42.0001 16.029 46.0295 11.9996 51.0001 11.9996 V 11.9996 Z M 66 83.9998 H 39 V 80.9114 L 39.6344 80.8913 C 41.501 80.8313 42.8882 80.301 43.7586 79.315 C 44.0677 78.9584 44.5933 77.743 44.5933 73.6566 V 46.3926 C 44.5933 42.5056 44.0505 41.0406 43.596 40.4957 C 42.9529 39.7288 41.614 39.2781 39.6156 39.157 L 39 39.1198 V 35.9998 H 59.9999 V 73.6566 C 59.9999 77.5464 61.0148 79.0108 61.4688 79.5537 C 62.1096 80.3204 63.3504 80.7707 65.3838 80.8919 L 66 80.9279 V 83.9999 V 83.9998 Z"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="content-modal hidden">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+
+                      <h3 class="modal-title" id="modalTitleNotificationOk">
+
+                        <data value="00,00"></data>
+                      </h3>
+                    </div>
+                    <div class="modal-body">
+                      <p></p>
+                    </div>
+                    <div class="modal-footer">
+                      <div class="btn-group btn-group-block">
+                        <button aria-label="Close" type="button" data-dismiss="modal" name="buttonName" class="btn btn-default btn-md" title="Button title">Cerrar</button>
+                      </div>
+                      <button aria-label="Close" class="close" data-dismiss="modal" title="Cerrar ventana modal" type="button">
+                        <svg aria-labelledby="titleCerrarModalNotificationOk iconCerrarModalNotificationOk" height="18px" role="img" viewbox="0 0 64 64" width="18px" xmlns="http://www.w3.org/2000/svg">
+                          <title id="titleCerrarModalNotificationOk">Icono cerrar</title>
+                          <desc id="iconCerrarModalNotificationOk">
+                            Un icono en forma de aspa de cierre
+                          </desc>
+                          <path d="M57.34,57.07a6.75,6.75,0,0,1-9.53,0L32,41.25,16.19,57.07a6.74,6.74,0,0,1-9.53-9.54L22.47,31.72,7.23,16.47a6.74,6.74,0,0,1,9.53-9.54L32,22.19,47.25,6.93a6.74,6.74,0,1,1,9.52,9.54L41.53,31.72,57.34,47.53A6.75,6.75,0,0,1,57.34,57.07Z" transform="translate(-4.69 -4.96)"></path>
+                        </svg>
+                        <span class="hide-text">Cerrar ventana modal</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </dl>
+
+          {% if productos_carrito is defined %}
+            {% for productoCart in productos_carrito %}
+              {% include 'templates/producto_carrito.html.twig' %}
+            {% endfor %}
+          {% endif %}
+
+          <div class="cart-desktop-fixed-item-product-btn-group dropdown dropdown-icon-right dropdown-accordion">
+            <button title="link title" class="btn btn-default dropdown-toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 6 19" width="6" height="19">
+                <ellipse transform="rotate(-90 2.72334 15.3529)" cx="2.72334" cy="15.3529" rx="2.64706" ry="2.72334"/>
+                <ellipse transform="rotate(-90 2.72334 8.64591)" cx="2.72334" cy="8.64591" rx="2.64706" ry="2.72334"/>
+                <ellipse transform="rotate(-90 2.72334 2.64591)" cx="2.72334" cy="2.64591" rx="2.64706" ry="2.72334"/>
+              </svg>
+              <span class="hide-text">Botón de opciones desplegable</span>
+            </button>
+            <ul class="dropdown-menu" role="listbox" style="display: none;">
+              <li role="option">
+                <button name="buttonRunOption" id="modificarPrd" title="Modificar productos" class="dropdown-item" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 19 20" width="19" height="20">
+                    <path d="M 18.4301 3.46749 L 17.2168 2.19096 L 15.7019 0.594665 C 15.2579 0.130016 14.6548 -0.0623382 14.0802 0.0176014 C 14.0636 0.0200995 14.047 0.0225976 14.0304 0.0250957 C 13.9758 0.0350882 13.9188 0.0450806 13.8665 0.0600693 C 13.8119 0.075058 13.7573 0.0925447 13.7027 0.110032 H 13.7003 C 13.4344 0.207458 13.1851 0.367337 12.9738 0.592167 L 2.05861 12.0835 L 0.785928 16.4927 L 0.470132 17.5843 L 0.0284929 19.1232 C 0.0237441 19.1382 0.0213697 19.1531 0.0166208 19.1681 C 0.0166208 19.1731 0.0142464 19.1781 0.0142464 19.1831 C 0.011872 19.1931 0.00949762 19.2031 0.00949762 19.2131 C 0.00949762 19.2181 0.00712322 19.2256 0.00712322 19.2306 C 0.00474881 19.2406 0.00474881 19.2506 0.00474881 19.2581 C 0.00474881 19.2631 0.00474881 19.2706 0.00237441 19.2755 C 0.00237441 19.2855 0.00237441 19.293 0 19.303 C 0 19.308 0 19.3155 0 19.3205 C 0 19.3305 0 19.3405 0 19.348 C 0 19.353 0 19.358 0 19.363 C 0 19.373 0.00237441 19.383 0.00237441 19.3955 C 0.00237441 19.4005 0.00237441 19.403 0.00237441 19.4079 C 0.00474881 19.4229 0.00712322 19.4354 0.00949762 19.4504 C 0.00949762 19.4529 0.011872 19.4554 0.011872 19.4579 C 0.0142464 19.4679 0.0166208 19.4804 0.0189952 19.4904 C 0.0213697 19.4954 0.0213697 19.5004 0.0237441 19.5054 C 0.0261185 19.5154 0.0284929 19.5229 0.0308673 19.5329 C 0.0332417 19.5378 0.0332417 19.5428 0.0356161 19.5478 C 0.0379905 19.5553 0.0403649 19.5628 0.0451137 19.5728 C 0.0474881 19.5778 0.0498625 19.5828 0.0522369 19.5878 C 0.0546113 19.5953 0.0593602 19.6028 0.0617346 19.6103 C 0.064109 19.6153 0.0664834 19.6203 0.0688578 19.6253 C 0.0736066 19.6328 0.075981 19.6403 0.0807298 19.6503 C 0.0831042 19.6553 0.0854786 19.6578 0.087853 19.6628 C 0.0926019 19.6727 0.0997251 19.6827 0.104474 19.6902 C 0.106848 19.6927 0.106848 19.6952 0.109223 19.6977 C 0.116346 19.7102 0.123469 19.7202 0.132967 19.7302 C 0.135341 19.7327 0.137716 19.7352 0.14009 19.7402 C 0.144839 19.7477 0.151962 19.7552 0.159085 19.7627 C 0.16146 19.7677 0.166208 19.7702 0.168583 19.7752 C 0.173332 19.7827 0.180455 19.7877 0.185204 19.7952 C 0.189953 19.8002 0.192327 19.8027 0.197076 19.8076 C 0.201825 19.8126 0.208948 19.8201 0.213697 19.8251 C 0.218445 19.8276 0.22082 19.8326 0.225569 19.8351 C 0.232692 19.8401 0.237441 19.8451 0.244564 19.8526 C 0.249313 19.8551 0.251687 19.8601 0.256436 19.8626 C 0.263559 19.8676 0.270682 19.8726 0.277806 19.8801 C 0.28018 19.8826 0.284929 19.8851 0.287303 19.8876 C 0.299175 19.8951 0.308673 19.9026 0.320545 19.9101 C 0.320545 19.9101 0.320545 19.9101 0.322919 19.9101 C 0.334791 19.9176 0.344289 19.9226 0.356161 19.9301 C 0.36091 19.9326 0.363284 19.935 0.368033 19.935 C 0.375156 19.94 0.384654 19.9425 0.391777 19.9475 C 0.396526 19.95 0.401275 19.9525 0.406023 19.9525 C 0.413147 19.955 0.42027 19.96 0.429768 19.9625 C 0.434516 19.965 0.439265 19.965 0.444014 19.9675 C 0.451137 19.97 0.460635 19.9725 0.467758 19.975 C 0.472507 19.9775 0.477256 19.9775 0.482004 19.98 C 0.491502 19.9825 0.498625 19.985 0.508123 19.985 C 0.512872 19.985 0.517621 19.9875 0.522369 19.9875 C 0.531867 19.99 0.541365 19.99 0.553237 19.9925 C 0.555611 19.9925 0.56036 19.9925 0.562734 19.995 C 0.576981 19.9975 0.588853 19.9975 0.603099 20 C 0.605474 20 0.607848 20 0.612597 20 C 0.622094 20 0.631592 20 0.64109 20 C 0.643464 20 0.643464 20 0.645839 20 C 0.655336 20 0.662459 20 0.671957 20 C 0.67908 20 0.686203 20 0.690952 20 C 0.70045 20 0.709948 19.9975 0.717071 19.9975 C 0.724194 19.9975 0.728943 19.995 0.736066 19.995 C 0.745564 19.9925 0.755061 19.99 0.766933 19.99 C 0.771682 19.99 0.778805 19.9875 0.783554 19.9875 C 0.7978 19.985 0.814421 19.98 0.828668 19.975 C 0.828668 19.975 0.828668 19.975 0.831042 19.975 L 1.34391 19.8101 L 3.32892 19.1756 L 7.515 17.8366 L 13.7526 11.2716 L 18.4301 6.34782 C 18.7079 6.05554 18.8837 5.69331 18.9573 5.3161 C 18.9596 5.30611 18.962 5.29361 18.9644 5.28362 C 18.9739 5.22866 18.981 5.1737 18.9881 5.11875 C 18.9881 5.11375 18.9905 5.10626 18.9905 5.10126 C 18.9953 5.03881 18.9976 4.97885 19 4.9164 V 4.9139 C 18.9953 4.3843 18.8077 3.86469 18.4301 3.46749 Z M 6.14971 16.3952 L 7.03774 17.3295 L 2.85166 18.6685 L 1.26081 16.9948 L 2.53112 12.5881 L 3.41915 13.5224 L 14.3343 2.03108 L 14.7902 2.51072 L 3.87503 14.002 L 5.69383 15.9181 L 16.609 4.42677 L 17.0649 4.90641 L 6.14971 16.3952 Z"/>
+                  </svg>
+                  Modificar productos
+                </button>
+              </li>
+              <li role="option">
+                <button name="buttonRunOption" id="eliminarPrd" title="Eliminar productos" class="dropdown-item" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewbox="0 0 16 20" width="16" height="20">
+                    <path clip-rule="evenodd" fill-rule="evenodd" d="M 13.5294 1.76374 H 10.5882 V 1.17647 C 10.5882 0.526722 10.0615 0 9.41174 0 H 5.88234 C 5.23259 0 4.70587 0.526722 4.70587 1.17647 V 1.76374 H 1.7647 C 0.790084 1.76374 0 2.55382 0 3.52844 V 4.70587 H 15.2941 V 3.52844 C 15.2941 2.55382 14.504 1.76374 13.5294 1.76374 Z M 5.88232 1.17642 H 9.41173 V 1.76369 H 5.88232 V 1.17642 Z M 1.17651 5.29315 V 20 H 14.1177 V 5.29315 H 1.17651 Z M 4.70576 7.64709 V 17.6439 C 4.70576 17.6449 4.70576 17.646 4.70576 17.6471 C 4.70576 17.9719 4.4424 18.2353 4.11753 18.2353 C 3.79266 18.2353 3.5293 17.9719 3.5293 17.6471 C 3.5293 17.646 3.5293 17.6449 3.5293 17.6439 V 7.64709 C 3.5293 7.64676 3.5293 7.64646 3.5293 7.64613 C 3.5293 7.32125 3.79266 7.05789 4.11753 7.05789 C 4.4424 7.05789 4.70576 7.32125 4.70576 7.64613 C 4.70576 7.64646 4.70576 7.64676 4.70576 7.64709 Z M 8.23531 7.64709 V 17.6439 C 8.23531 17.6449 8.23531 17.646 8.23531 17.6471 C 8.23531 17.9719 7.97194 18.2353 7.64707 18.2353 C 7.3222 18.2353 7.05884 17.9719 7.05884 17.6471 C 7.05884 17.646 7.05884 17.6449 7.05884 17.6439 V 7.64709 C 7.05884 7.64676 7.05884 7.64643 7.05884 7.64613 C 7.05884 7.32125 7.3222 7.05789 7.64707 7.05789 C 7.97194 7.05789 8.23531 7.32125 8.23531 7.64613 C 8.23531 7.64643 8.23531 7.64676 8.23531 7.64709 Z M 11.7647 7.64709 V 17.6439 C 11.7647 17.6449 11.7647 17.646 11.7647 17.6471 C 11.7647 17.9719 11.5014 18.2353 11.1765 18.2353 C 10.8516 18.2353 10.5883 17.9719 10.5883 17.6471 C 10.5883 17.646 10.5883 17.6449 10.5883 17.6439 V 7.64709 C 10.5883 7.64676 10.5883 7.64646 10.5883 7.64613 C 10.5883 7.32125 10.8516 7.05789 11.1765 7.05789 C 11.5014 7.05789 11.7647 7.32125 11.7647 7.64613 C 11.7647 7.64646 11.7647 7.64676 11.7647 7.64709 Z"/>
+                  </svg>
+                  Eliminar productos
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cart-desktop-fixed-item-product">
+          <h2 class="cart-desktop-fixed-item-product-title">Gastos envío</h2>
+          <dl class="cart-desktop-fixed-item-product-list">
+            <dt class="cart-desktop-fixed-item-product-list-term">Envío normal</dt>
+            <dd id="gastos_envio_carrito" class="cart-desktop-fixed-item-product-list-description" data-promoted="yes">5,00€</dd>
+            <dt class="cart-desktop-fixed-item-product-list-term"></dt>
+            <dd class="cart-desktop-fixed-item-product-list-description"></dd>
+          </dl>
+        </div>
+
+        <div class="cart-desktop-fixed-share">
+          <dl class="cart-desktop-fixed-payment-list">
+            <dt class="cart-desktop-fixed-payment-list-term" data-highlighted="yes">Total carrito</dt>
+            <dd id="importe_total_carrito" class="cart-desktop-fixed-payment-list-description" data-highlighted="yes">99,99€</dd>
+            <dt class="cart-desktop-fixed-payment-list-term">
+              <span class="font-xs">(IVA incluido)</span></dt>
+            <dd class="cart-desktop-fixed-payment-list-description"></dd>
+            <dt class="cart-desktop-fixed-payment-list-term">&nbsp;</dt>
+            <dd class="cart-desktop-fixed-payment-list-description">
+              Entrega de 2 a 4 días
+              <button name="name" class="tippy-trigger" type="button" data-tippy-content="Texto Tooltip en tag button">
+                <svg width="25" height="25" viewbox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M75 125C102.614 125 125 102.614 125 75C125 47.3858 102.614 25 75 25C47.3858 25 25 47.3858 25 75C25 102.614 47.3858 125 75 125Z" fill="#527EDB"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M74.25 94.2C72.4501 94.2 70.95 94.8 69.7 96C68.45 97.2 67.85 98.7 67.85 100.45C67.85 102.45 68.5 104 69.75 105.1C71 106.2 72.5 106.75 74.2 106.75C75.85 106.75 77.3 106.2 78.55 105.05C79.8 103.95 80.45 102.4 80.45 100.45C80.45 98.7 79.85 97.2 78.65 96C77.5 94.8 76 94.2 74.25 94.2ZM93.2001 51.6C91.5 49.05 89.1 47 86 45.5C82.9 44 79.3 43.25 75.25 43.25C70.9 43.25 67.05 44.15 63.8 45.95C60.55 47.75 58.05 50 56.35 52.7C54.65 55.45 53.8 58.15 53.8 60.8C53.8 62.1 54.35 63.3 55.4 64.4C56.5 65.5 57.8 66.05 59.4 66.05C62.05 66.05 63.85 64.45 64.8 61.3C65.8 58.3 67 56 68.5 54.45C69.95 52.9 72.2001 52.1 75.3 52.1C77.9501 52.1 80.05 52.85 81.75 54.4C83.4 55.95 84.25 57.8 84.25 60.05C84.25 61.2 84 62.25 83.45 63.25C82.9 64.25 82.25 65.1 81.45 65.9C80.65 66.7 79.35 67.9 77.55 69.45C75.5 71.25 73.9 72.8 72.7 74.1C71.5 75.4 70.55 76.9 69.8 78.65C69.05 80.35 68.7 82.4 68.7 84.75C68.7 86.6 69.2 88.05 70.2 89C71.2 89.95 72.4 90.45 73.85 90.45C76.65 90.45 78.3001 89 78.85 86.1C79.15 84.75 79.4 83.75 79.55 83.25C79.7 82.7 79.9 82.15 80.2 81.6C80.5 81.05 80.9 80.45 81.5 79.8C82.05 79.15 82.85 78.4 83.8 77.5C87.25 74.45 89.6 72.25 90.95 70.95C92.3 69.65 93.4 68.1 94.4 66.3C95.4 64.5 95.75 62.35 95.75 60C95.75 57 94.9001 54.2 93.2001 51.6Z" fill="white"/>
+                </svg>
+              </button>
+            </dd>
+          </dl>
+          <div class="cart-desktop-fixed-payment-list">
+            <ul class="list-feature">
+              <li class="cart-desktop-fixed-payment-list-feature">
+                <img title="title text" alt="alt text" width="10px" src="../resources/img/icons/chevron.svg">
+                <span class="">Entrega a domicilio</span>
+              </li>
+              <li class="cart-desktop-fixed-payment-list-feature">
+                <img title="title text" alt="alt text" width="10px" src="../resources/img/icons/chevron.svg">
+                <span class="">Posibilidad de devolución
+                </span>
+              </li>
+              <li class="cart-desktop-fixed-payment-list-feature">
+                <img title="title text" alt="alt text" width="10px" src="../resources/img/icons/chevron.svg">
+                <span class="">Compra segura</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

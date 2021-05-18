@@ -1,0 +1,83 @@
+{% extends 'components/main.html.twig' %}
+
+{% block title %}Resumen pedido{% endblock %}
+
+{% block content %}
+
+  <div class="col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-8">
+    <div class="mod-purchasing-process">
+
+      <div class="mod-purchasing-process-confirmation">
+        <div class="mod-purchasing-process-confirmation-title">
+          <span class="mod-purchasing-process-confirmation-title-text">Antes de verificar la compra, compruebe que está todo correcto</span>
+        </div>
+        <p class="mod-purchasing-process-confirmation-subtitle">Por favor, verifique sus datos y confirme tu compra.</p>
+        <p class="mod-purchasing-process-confirmation-subtitle">Una vez finalizada la compra, nos pondremos en contacto con usted para comunicarle la agencia de transporte y fecha de envío.</p>
+        <div class="mod-purchasing-process-confirmation-container">
+          <div class="mod-purchasing-process-confirmation-container-card">
+            <div class="mod-purchasing-process-confirmation-container-card-data">
+              <div class="mod-purchasing-process-confirmation-container-card-data-title">
+                <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Dirección entrega</span>
+              </div>
+              <div class="mod-purchasing-process-confirmation-container-card-data-info">
+                <span id="VerificarDirección" class="mod-purchasing-process-confirmation-container-card-data-info-text">
+                  .
+                </span>
+              </div>
+            </div>
+            <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
+            <a href="#" class="btn-block" title="Ir a edición de datos de direccion" target="_self">Ir a edición de datos de dirección</a>
+          </div>
+          <div class="mod-purchasing-process-confirmation-container-card">
+            <div class="mod-purchasing-process-confirmation-container-card-data">
+              <div class="mod-purchasing-process-confirmation-container-card-data-title">
+                <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Datos personales</span>
+              </div>
+              <div class="mod-purchasing-process-confirmation-container-card-data-info">
+                <span id="VerificarNombre" class="mod-purchasing-process-confirmation-container-card-data-info-text">
+                  .
+                </span>
+              </div>
+            </div>
+            <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
+            <a href="#" class="btn-block" title="Ir a edición de datos personales" target="_self">Ir a edición de datos personales</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="boxcontainer-input boxcontainer-input-50">
+        <div class="boxcontainer-input-group">
+          <form class="checkbox-radio">
+            <fieldset>
+              <div class="form-group">
+                <div class="checkbox checkbox-primary">
+                  <input type="checkbox" name="checkbox2" id="checkbox2" value="option1">
+                  <label for="checkbox2">Acepte las condiciones legales</label>
+                  <p class="msg-error">
+                    <span class="icon-moon icon-error-form-field"></span>
+                    <span class="txt">Por favor, elija una opción</span>
+                  </p>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <form method="post">
+      {{include('components/_botones.html.twig')}}
+    </form>
+
+    <img src="{{ asset('img/ilustracion-promo-producto.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
+
+  </div>
+
+{% endblock %}
+
+{% block javascript_modules %}
+  {{  parent() }}
+  <script src="{{ asset('js/paso4.js') }}"></script>
+
+{% endblock %}
