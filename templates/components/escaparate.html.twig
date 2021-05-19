@@ -4,8 +4,8 @@
 
       {% if productos is defined%}
         {% for producto in productos %}
-          <div class="step-form-counter bg-lightgrey">
-            <div class="step-container">
+
+      {% if productos is defined%}
               <div class="esc-producto color-darkgrey" id="prd_{{producto.id}}" data-sel="{{producto.id}}" data-price="{{producto.precio_promo}}">
                 <div class="prod-number">
                   <span class="producto" id="name_prd_{{producto.id}}">{{producto.nombre}}</span>
@@ -16,9 +16,10 @@
                   {{producto.precio_base}}€</span>
               </div>
             </div>
+              </div>
+            </div>
           </div>
-        {% endfor %}
-      {% endif %}
+
 
     </div>
   </div>
