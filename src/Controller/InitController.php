@@ -2,11 +2,14 @@
     
 namespace App\Controller;
 
+use App\Entity\Productos;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+
+use App\Controller\daos\ProductosDaoController;
 
 
 
@@ -18,46 +21,34 @@ class InitController extends AbstractController {
      *
      * @return void
      */
-    public function init() {
+    public function init(ProductosDaoController $daoP) {
+
+        $productos=$daoP->list();
 
         return $this->render('index.html.twig',[
+            'productos'=>$productos,
             'vdisabled'=>'disabled',
             'url_continuar'=>'paso2'
         ]);
 
     }
 
+
     /**
-     * @Route("/paso1")     
+     * @Route("/paso1")  
      *
+     * @param ProductosDaoController $daoP
      * @return void
      */
-    public function paso1() {
+    public function paso1(ProductosDaoController $daoP) {
 
-       return $this->render('index.html.twig',[
-        'vdisabled'=>'disabled',
-        'url_continuar'=>'paso2'
+        $productos=$daoP->list();
+
+        return $this->render('index.html.twig',[
+            'productos'=>$productos,
+            'vdisabled'=>'disabled',
+            'url_continuar'=>'paso2'
         ]);
 
     }
-
-    /**
-     * @Route("/recordOrder")
-     * TO DO
-     *
-     * @return void
-     */
-    public function recordOrder() {
-
-        return new JsonResponse(array(
-            'status' => 'OK',
-            'message' => 'Puede continuar'),
-        200);
-
-    }
-
-
 }
-
-
-?>
