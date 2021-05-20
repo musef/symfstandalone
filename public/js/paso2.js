@@ -2,20 +2,67 @@ $(document).ready(function () {
 
 
     $('.progress').css('width','34%');
-
-    readStoredCart();
+    // restauramos carritoprice
+    readStoredCart();    
+    // quitamos los items de borrado
+    $('[id^=product_delete]').remove();
 
 });
 
 
-/**
- * Esta funcion lee los datos del carrito almacenado en el sesionStorage
- * y lo muestra en el carrito en el DOM 
- */
-function readStoredCart() {
 
-	addProductInCart(1,"Producto Fake","88.88");
-	addProductInCart(2,"Producto Fake 2","123.45");
+/**
+ * Esta funcion lee los datos del carritoprice almacenado en el sesionStorage
+ * y lo muestra en el carritoprice en el DOM 
+ */
+ function readStoredCart() {
+
+	let carrito = sessionStorage.getItem('std_carrito');
+    if (carrito == null || typeof carrito == "undefined"
+        || carrito == "") {
+
+        carrito = new Array;
+
+    } else {
+
+        carrito = JSON.parse(carrito);
+
+    }
+
+    if (Array.isArray(carrito)) {
+    	carrito.forEach((item)=>{
+    		addProductInCart(item.id,item.name,item.price);        
+    	});
+    }
+
+    
+    let carritoprice = sessionStorage.getItem('std_importecarrito');
+    if (carritoprice == null || typeof carritoprice == "undefined"
+        || carritoprice == "") {
+
+        carritoprice = 0.00;
+
+    } else {
+
+        carritoprice = parseFloat(carritoprice);
+
+    }
+    $('#importe_total_carrito').html(carritoprice);
+
+	
+
+    let carritoenvio = sessionStorage.getItem('std_enviocarrito');
+    if (carritoenvio == null || typeof carritoenvio == "undefined"
+        || carritoenvio == "") {
+
+        carritoenvio = 0.00;
+
+    } else {
+
+        carritoenvio = parseFloat(carritoenvio);
+
+    }    
+	$('#gastos_envio_carrito').html(carritoenvio + '€');
 
 }
 
