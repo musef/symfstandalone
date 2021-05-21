@@ -36,11 +36,11 @@ class ClientesDaoController extends ServiceEntityRepository
      */
     public function show($id)
     {
-        $Cliente = $this->em
+        $cliente = $this->em
             ->getRepository(Clientes::class)
             ->find($id);
 
-        return $Cliente;
+        return $cliente;
     }
 
 

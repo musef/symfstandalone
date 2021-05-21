@@ -40,7 +40,7 @@ $('[id^="prd_"]').click(
         }
     }
 );
-
+/*
 $('#continuar-a-datos').click(
     function (event) {
         event.preventDefault();
@@ -49,7 +49,7 @@ $('#continuar-a-datos').click(
     }
 
 );
-
+*/
 
 /**
  * Esta funcion inicializa las variables del carrito, cuando se

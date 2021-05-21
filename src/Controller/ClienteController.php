@@ -71,9 +71,60 @@ class ClienteController extends AbstractController {
      * 
      * @return void
      */
-    public function paso2() {
+    public function paso2(Request $request, ClientesDaoController $cdao) {
+
+      $idC = $request->request->get('id_cliente');
+
+      // nuevo formulario si el cliente no existe
+      if ( is_null($idC) || $idC == "0") {
+            $id = '0';
+            $name = '';
+            $lastname = '';
+            $lastname2 = '';
+            $email = '';
+            $mobile = '';
+            $identity = '';
+            $numberdoc = '';
+            $birthdate = '';
+
+      } else {
+            // recuperamos el cliente
+            $cliente=$cdao->show($idC);
+            if (is_null($cliente)) {
+                  $id = '0';
+                  $name = '';
+                  $lastname = '';
+                  $lastname2 = '';
+                  $email = '';
+                  $mobile = '';
+                  $identity = '';
+                  $numberdoc = '';
+                  $birthdate = '';
+            } else {
+                  $id = $idC;
+                  $name = $cliente->getNombre();
+                  $lastname = $cliente->getApellido1();
+                  $lastname2 = $cliente->getApellido2();
+                  $email = $cliente->getEmail();
+                  $mobile = $cliente->getTlfMovil();
+                  $identity = $cliente->getDocIdentidadTipo();
+                  $numberdoc = $cliente->getDocIdentidad();
+                  $birthdate = date_format($cliente->getFechaNacimiento(),"d/m/Y");             
+            }
+
+
+      }
 
       return $this->render('paso2.html.twig',[
+            'id_cliente' => $id,
+            'name' => $name,
+            'lastname' => $lastname,
+            'lastname2' => $lastname2,
+            'email' => $email,
+            'mobile' => $mobile,
+            'identity' => $identity,
+            'numberdoc' => $numberdoc,
+            'birthdate' => $birthdate,
             'url_volver'=>'paso1',
             'url_continuar'=>'paso3'
       ]);
@@ -97,20 +148,29 @@ class ClienteController extends AbstractController {
 
             // todos campos son requeridos
             $name = $request->request->get('firstname');
-            $apellido1 = $request->request->get('lastname');
-            $apellido2 = $request->request->get('lastname2');
+            $lastname = $request->request->get('lastname');
+            $lastname2 = $request->request->get('lastname2');
             $email = $request->request->get('email');
             $mobile = $request->request->get('mobile');
-            $identidad = $request->request->get('identidad');
+            $identity = $request->request->get('identidad');
             $numberdoc = $request->request->get('numberdoc');
             $birthdate = $request->request->get('birthdate');
 
             if (!is_null($birthdate) && strlen($birthdate) != 10) $birthdate=null;
             
-            if (is_null($name) || is_null($apellido1) || is_null($apellido2) || is_null($email) ||
-                  is_null($mobile) || is_null($identidad) || is_null($numberdoc) || is_null($birthdate) ) {
+            if (is_null($name) || is_null($lastname) || is_null($lastname2) || is_null($email) ||
+                  is_null($mobile) || is_null($identity) || is_null($numberdoc) || is_null($birthdate) ) {
 
                   return $this->render('paso2.html.twig',[
+                        'id_cliente' => $idC,
+                        'name' => $name,
+                        'lastname' => $lastname,
+                        'lastname2' => $lastname2,
+                        'email' => $email,
+                        'mobile' => $mobile,
+                        'identity' => $identity,
+                        'numberdoc' => $numberdoc,
+                        'birthdate' => $birthdate,                        
                         'url_volver'=>'paso1',
                         'url_continuar'=>'paso3',
                         'message'=> 'Faltan datos en el formulario'
@@ -121,11 +181,11 @@ class ClienteController extends AbstractController {
 
             $cliente = new Clientes;
             $cliente->setFecha($fec);
-            $cliente->setDocIdentidadTipo($identidad);
+            $cliente->setDocIdentidadTipo($identity);
             $cliente->setDocIdentidad($numberdoc);
             $cliente->setNombre($name);
-            $cliente->setApellido1($apellido1);
-            $cliente->setApellido2($apellido2);
+            $cliente->setApellido1($lastname);
+            $cliente->setApellido2($lastname2);
             $cliente->setFechaNacimiento($fecNac);
             $cliente->setEmail($email);
             $cliente->setTlfMovil($mobile);
@@ -134,12 +194,47 @@ class ClienteController extends AbstractController {
     
             if ($result===false) {
                 return $this->render('paso2.html.twig',[
+                    'id_cliente' => '0',
+                    'name' => $name,
+                    'lastname' => $lastname,
+                    'lastname2' => $lastname2,
+                    'email' => $email,
+                    'mobile' => $mobile,
+                    'identity' => $identity,
+                    'numberdoc' => $numberdoc,
+                    'birthdate' => $birthdate,                     
                     'url_volver'=>'paso1',
                     'url_continuar'=>'paso3',
                     'message'=> 'Error en la grabación del cliente'
                 ]);            
             }
         } else {
+            // recuperamos el cliente
+            if (is_null($cdao->show($idC))) {
+                  $name = '';
+                  $lastname = '';
+                  $lastname2 = '';
+                  $email = '';
+                  $mobile = '';
+                  $identity = '';
+                  $numberdoc = '';
+                  $birthdate = '';
+                  return $this->render('paso2.html.twig',[
+                        'id_cliente' => '0',
+                        'name' => $name,
+                        'lastname' => $lastname,
+                        'lastname2' => $lastname2,
+                        'email' => $email,
+                        'mobile' => $mobile,
+                        'identity' => $identity,
+                        'numberdoc' => $numberdoc,
+                        'birthdate' => $birthdate, 
+                        'url_volver' => 'paso1',
+                        'url_continuar' => 'paso3',
+                        'message' => 'Cliente inexistente'
+                  ]);                  
+            }
+
             $result=$idC;
         }
 

@@ -19,6 +19,7 @@
         </div>
       </div>
       <form method="post">
+        <input type="hidden" id="id_cliente" name="id_cliente" value="{{id_cliente}}">
         {{include('components/_botones.html.twig')}}
       </form>
       <img src="{{ asset('img/ilustracion-promo-producto.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
