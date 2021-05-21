@@ -57,12 +57,62 @@ $('#continuar-a-datos').click(
  */
 function startingCart() {
 
-    sessionStorage.setItem('std_importecarrito', "5.00");
-    sessionStorage.setItem('std_enviocarrito', "5.00");
-    sessionStorage.setItem('std_carrito', "");
+	let carrito = sessionStorage.getItem('std_carrito');
+    if (carrito == null || typeof carrito == "undefined"
+        || carrito == "") {
 
-    $('#gastos_envio_carrito').html(sessionStorage.getItem('std_enviocarrito') + '€');
-    $('#importe_total_carrito').html(sessionStorage.getItem('std_importecarrito') + '€');
+            sessionStorage.setItem('std_importecarrito', "5.00");
+            sessionStorage.setItem('std_enviocarrito', "5.00");
+            sessionStorage.setItem('std_carrito', "");
+        
+            $('#gastos_envio_carrito').html(sessionStorage.getItem('std_enviocarrito') + '€');
+            $('#importe_total_carrito').html(sessionStorage.getItem('std_importecarrito') + '€');
+
+    } else {
+
+        carrito = JSON.parse(carrito);
+        if (Array.isArray(carrito)) {
+            carrito.forEach((item)=>{
+                addProductInCart(item.id,item.name,item.price);    
+                $('#prd_' + item.id).removeClass('color-darkgrey');
+                $('#prd_' + item.id).addClass('color-black');
+                $('#prd_' + item.id).addClass('bg-orange');
+                $('#prd_' + item.id).attr('data-sel', 'sel');                    
+            });
+        }
+    
+        
+        let carritoprice = sessionStorage.getItem('std_importecarrito');
+        if (carritoprice == null || typeof carritoprice == "undefined"
+            || carritoprice == "") {
+    
+            carritoprice = 0.00;
+    
+        } else {
+    
+            carritoprice = parseFloat(carritoprice);
+    
+        }
+        $('#importe_total_carrito').html(carritoprice);
+    
+        
+    
+        let carritoenvio = sessionStorage.getItem('std_enviocarrito');
+        if (carritoenvio == null || typeof carritoenvio == "undefined"
+            || carritoenvio == "") {
+    
+            carritoenvio = 0.00;
+    
+        } else {
+    
+            carritoenvio = parseFloat(carritoenvio);
+    
+        }    
+        $('#gastos_envio_carrito').html(carritoenvio + '€');        
+
+    }
+
+
 
 }
 

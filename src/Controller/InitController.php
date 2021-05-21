@@ -35,7 +35,7 @@ class InitController extends AbstractController {
 
 
     /**
-     * @Route("/paso1")  
+     * @Route("/nav1", name="paso_1")  
      *
      * @param ProductosDaoController $daoP
      * @return void

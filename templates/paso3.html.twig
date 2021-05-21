@@ -5,224 +5,229 @@
 {% block content %}
 
   <div class="col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-8">
-    <div class="mod-purchasing-process">
-      <h1 class="title-page">
-        <span class="font-md">
-          Necesitamos tu número de cuenta para domiciliar el pago
-        </span>
-      </h1>
-      <p class="mod-purchasing-process-text">Domiciliamos tu recibo en este número de cuenta</p>
-      <div class="mod-purchasing-process-form">
-        <div class="boxcontainer-input boxcontainer-input-50">
-          <div class="boxcontainer-input-group">
-            <div class="form-group">
-              <label class="control-label" for="bank">Cuenta bancaria
-                <span class="boxcontainer-input-group-label-mandatory">*</span></label>
-              <input id="bank" name="bank" type="text" placeholder="ES00 0000 0000 0000 0000 0000" class="form-control" required="" minlength="29" maxlength="29">
-              <p class="msg-error">
-                <span class="icon-moon icon-error-form-field"></span>
-                <span class="txt">Por favor, rellene el formulario</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="boxcontainer-input" id="capa_direccion_instalacion">
-
-        <!--Nuevo modulo Normalizador-->
-        <div class="form-group">
-          <!-- <fieldset class="sin-cobertura"> -->
-          <label class="col-flex-xs-6 col-flex-sm-4 col-flex-md-4 col-flex-lg-4 control-label font-sm text-right form_tex_left" for="sa_phone">
-            Dirección de instalación
-            <span class="color-orange ">*</span></label>
-
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="" id="form_antiguo">
-            <!-- formulario antiguo -->
-            <div class="row inputs-valida" data-id="entrada">
-
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label class="custom-select">
-                    <select class="form-control" name="tipo_de_via" id="direccion-tipo-via" required="">
-                      <option value="">Tipo vía</option>
-                      <option value="Calle">Calle</option>
-                      <option value="Avenida">Avenida</option>
-                      <option value="Plaza">Plaza</option>
-                      <option value="Carretera">Carretera</option>
-                      <option value="Polígono">Polígono</option>
-                      <option value="Paseo">Paseo</option>
-                      <option value="Urbanizacion">Urbanización</option>
-                      <option value="Pasaje">Pasaje</option>
-                      <option value="Rambla">Rambla</option>
-                      <option value="Ronda">Ronda</option>
-                      <option value="Camino">Camino</option>
-                      <option value="Travesía">Travesía</option>
-                      <option value="Apartamento">Apartamento</option>
-                      <option value="Bloque">Bloque</option>
-                      <option value="Chalet">Chalet</option>
-                      <option value="Edificio">Edificio</option>
-                      <option value="Glorieta">Glorieta</option>
-                      <option value="Grupo">Grupo</option>
-                      <option value="Mercado">Mercado</option>
-                      <option value="Parque">Parque</option>
-                      <option value="Callejón">Callejón</option>
-                      <option value="Barrio">Barrio</option>
-                      <option value="Alameda">Alameda</option>
-                      <option value="Avinguda">Avinguda</option>
-                      <option value="Baixada">Baixada</option>
-                      <option value="Barriada">Barriada</option>
-                      <option value="Calleja">Calleja</option>
-                      <option value="Colonia">Colonia</option>
-                      <option value="Cuesta">Cuesta</option>
-                      <option value="Partida">Partida</option>
-                      <option value="Poblado">Poblado</option>
-                      <option value="ProlongaciónL">ProlongaciónL</option>
-                      <option value="Sendero">Sendero</option>
-                      <option value="Acceso">Acceso</option>
-                      <option value="Acces">Acces</option>
-                      <option value="Agrupacion">Agrupacion</option>
-                      <option value="Bajada">Bajada</option>
-                      <option value="Barranco">Barranco</option>
-                      <option value="Barri">Barri</option>
-                      <option value="Carrer">Carrer</option>
-                      <option value="Rua">Rua</option>
-                      <option value="Kalea">Kalea</option>
-                      <option value="Calexon">Calexon</option>
-                      <option value="Cami">Cami</option>
-                      <option value="Camiño">Camiño</option>
-                      <option value="Estrada">Estrada</option>
-                      <option value="Carrero">Carrero</option>
-                      <option value="Casas">Casas</option>
-                      <option value="Diseminado">Diseminado</option>
-                      <option value="Edifici">Edifici</option>
-                      <option value="Grup">Grup</option>
-                      <option value="Lugar">Lugar</option>
-                      <option value="Mercat">Mercat</option>
-                      <option value="Paraje">Paraje</option>
-                      <option value="Paratge">Paratge</option>
-                      <option value="Parc">Parc</option>
-                      <option value="Passeig">Passeig</option>
-                      <option value="Paseio">Paseio</option>
-                      <option value="Plaça">Plaça</option>
-                      <option value="Praza">Praza</option>
-                      <option value="Placa">Placa</option>
-                      <option value="Plazuela">Plazuela</option>
-                      <option value="Poligon">Poligon</option>
-                      <option value="Senda">Senda</option>
-                      <option value="Subida">Subida</option>
-                      <option value="Torrente">Torrente</option>
-                      <option value="Torrent">Torrent</option>
-                      <option value="Travessia">Travessia</option>
-                      <option value="Travessera">Travessera</option>
-                      <option value="Urbanitzacio">Urbanitzacio</option>
-                    </select>
-                  </label>
-                  <p class="msg-error">Selecciona</p>
-                </div>
-              </div>
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                  <input type="text" class="form-control input-md" placeholder="Nombre de la vía" name="calle" id="direccion" required="">
-                  <p class="msg-error">El campo está vacío</p>
-                </div>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                  <input type="number" class="form-control input-md" data-toggle="tooltip" title="" placeholder="Número" name="numero" required="" id="numero-direccion" data-original-title="si es s/n pon un 0">
-                  <p class="msg-error">El campo está vacío</p>
-                </div>
-              </div>
-            </div>
-            <div class="row inputs-valida" data-id="entrada">
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                  <input type="text" class="form-control input-md" name="codigo_postal" placeholder="Cód. Postal" id="codigo-postal" maxlength="5" onchange="dameCodPostal('codigo-postal','provincia')" required="">
-                  <p class="msg-error">El campo está vacío</p>
-                </div>
-              </div>
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="form-group">
-                  <input type="text" class="form-control input-md" placeholder="Introduce tu localidad" name="localidad" id="localidad" required="">
-                  <p class="msg-error">El campo está vacío</p>
-                </div>
-              </div>
-              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <div class="form-group">
-                  <label class="custom-select">
-                    <select class="form-control" name="provincia" id="provincia" required="">
-                      <option value="">Provincia</option>
-                      <option value="Alava">Alava</option>
-                      <option value="Albacete">Albacete</option>
-                      <option value="Alicante">Alicante</option>
-                      <option value="Almeria">Almeria</option>
-                      <option value="Asturias">Asturias</option>
-                      <option value="Avila">Avila</option>
-                      <option value="Badajoz">Badajoz</option>
-                      <option value="Barcelona">Barcelona</option>
-                      <option value="Burgos">Burgos</option>
-                      <option value="Caceres">Caceres</option>
-                      <option value="Cadiz">Cadiz</option>
-                      <option value="Cantabria">Cantabria</option>
-                      <option value="Castellon">Castellon</option>
-                      <option value="Ceuta">Ceuta</option>
-                      <option value="Ciudad Real">Ciudad Real</option>
-                      <option value="Cordoba">Cordoba</option>
-                      <option value="A Coruña">A Coruña</option>
-                      <option value="Cuenca">Cuenca</option>
-                      <option value="Girona">Girona</option>
-                      <option value="Granada">Granada</option>
-                      <option value="Guadalajara">Guadalajara</option>
-                      <option value="Guipuzcoa">Guipuzcoa</option>
-                      <option value="Huelva">Huelva</option>
-                      <option value="Huesca">Huesca</option>
-                      <option value="Baleares">Baleares</option>
-                      <option value="Jaen">Jaen</option>
-                      <option value="Leon">Leon</option>
-                      <option value="Lleida">Lleida</option>
-                      <option value="Lugo">Lugo</option>
-                      <option value="Madrid">Madrid</option>
-                      <option value="Malaga">Malaga</option>
-                      <option value="Melilla">Melilla</option>
-                      <option value="Murcia">Murcia</option>
-                      <option value="Navarra">Navarra</option>
-                      <option value="Ourense">Ourense</option>
-                      <option value="Palencia">Palencia</option>
-                      <option value="Las Palmas">Las Palmas</option>
-                      <option value="Pontevedra">Pontevedra</option>
-                      <option value="La Rioja">La Rioja</option>
-                      <option value="Salamanca">Salamanca</option>
-                      <option value="Santa Cruz De Tenerife">Santa Cruz De Tenerife</option>
-                      <option value="Segovia">Segovia</option>
-                      <option value="Sevilla">Sevilla</option>
-                      <option value="Soria">Soria</option>
-                      <option value="Tarragona">Tarragona</option>
-                      <option value="Teruel">Teruel</option>
-                      <option value="Toledo">Toledo</option>
-                      <option value="Valencia">Valencia</option>
-                      <option value="Valladolid">Valladolid</option>
-                      <option value="Vizcaya">Vizcaya</option>
-                      <option value="Zamora">Zamora</option>
-                      <option value="Zaragoza">Zaragoza</option>
-                    </select>
-                  </label>
-                  <p class="msg-error">Selecciona</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
     <form method="post">
+      <input type="hidden" id="id_cliente" name="id_cliente" value="{{id_cliente}}">
+      <div class="mod-purchasing-process">
+        <h1 class="title-page">
+          <span class="font-md">
+            Necesitamos tu número de cuenta para domiciliar el pago
+          </span>
+        </h1>
+        <p class="mod-purchasing-process-text">Domiciliamos tu recibo en este número de cuenta</p>
+        <div class="mod-purchasing-process-form">
+          <div class="boxcontainer-input boxcontainer-input-50">
+            <div class="boxcontainer-input-group">
+              <div class="form-group">
+                <label class="control-label" for="bank">Cuenta bancaria
+                  <span class="boxcontainer-input-group-label-mandatory">*</span></label>
+                <input id="bank" name="bank" type="text" placeholder="ES00 0000 0000 0000 0000 0000" class="form-control" required="" minlength="29" maxlength="29">
+                <p class="msg-error">
+                  <span class="icon-moon icon-error-form-field"></span>
+                  <span class="txt">Por favor, rellene el formulario</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="boxcontainer-input" id="capa_direccion">
+
+          <!--Nuevo modulo Normalizador-->
+          <div class="form-group">
+            <!-- <fieldset class="sin-cobertura"> -->
+            <label class="col-flex-xs-6 col-flex-sm-4 col-flex-md-4 col-flex-lg-4 control-label font-sm text-right form_tex_left" for="sa_phone">
+              Dirección de instalación
+              <span class="color-orange ">*</span></label>
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" style="" id="form_antiguo">
+              <!-- formulario antiguo -->
+              <div class="row inputs-valida" data-id="entrada">
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group">
+                    <label class="custom-select">
+                      <select class="form-control" name="tipo_de_via" id="direccion-tipo-via" required="">
+                        <option value="">Tipo vía</option>
+                        <option value="Calle">Calle</option>
+                        <option value="Avenida">Avenida</option>
+                        <option value="Plaza">Plaza</option>
+                        <option value="Carretera">Carretera</option>
+                        <option value="Polígono">Polígono</option>
+                        <option value="Paseo">Paseo</option>
+                        <option value="Urbanizacion">Urbanización</option>
+                        <option value="Pasaje">Pasaje</option>
+                        <option value="Rambla">Rambla</option>
+                        <option value="Ronda">Ronda</option>
+                        <option value="Camino">Camino</option>
+                        <option value="Travesía">Travesía</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Bloque">Bloque</option>
+                        <option value="Chalet">Chalet</option>
+                        <option value="Edificio">Edificio</option>
+                        <option value="Glorieta">Glorieta</option>
+                        <option value="Grupo">Grupo</option>
+                        <option value="Mercado">Mercado</option>
+                        <option value="Parque">Parque</option>
+                        <option value="Callejón">Callejón</option>
+                        <option value="Barrio">Barrio</option>
+                        <option value="Alameda">Alameda</option>
+                        <option value="Avinguda">Avinguda</option>
+                        <option value="Baixada">Baixada</option>
+                        <option value="Barriada">Barriada</option>
+                        <option value="Calleja">Calleja</option>
+                        <option value="Colonia">Colonia</option>
+                        <option value="Cuesta">Cuesta</option>
+                        <option value="Partida">Partida</option>
+                        <option value="Poblado">Poblado</option>
+                        <option value="ProlongaciónL">ProlongaciónL</option>
+                        <option value="Sendero">Sendero</option>
+                        <option value="Acceso">Acceso</option>
+                        <option value="Acces">Acces</option>
+                        <option value="Agrupacion">Agrupacion</option>
+                        <option value="Bajada">Bajada</option>
+                        <option value="Barranco">Barranco</option>
+                        <option value="Barri">Barri</option>
+                        <option value="Carrer">Carrer</option>
+                        <option value="Rua">Rua</option>
+                        <option value="Kalea">Kalea</option>
+                        <option value="Calexon">Calexon</option>
+                        <option value="Cami">Cami</option>
+                        <option value="Camiño">Camiño</option>
+                        <option value="Estrada">Estrada</option>
+                        <option value="Carrero">Carrero</option>
+                        <option value="Casas">Casas</option>
+                        <option value="Diseminado">Diseminado</option>
+                        <option value="Edifici">Edifici</option>
+                        <option value="Grup">Grup</option>
+                        <option value="Lugar">Lugar</option>
+                        <option value="Mercat">Mercat</option>
+                        <option value="Paraje">Paraje</option>
+                        <option value="Paratge">Paratge</option>
+                        <option value="Parc">Parc</option>
+                        <option value="Passeig">Passeig</option>
+                        <option value="Paseio">Paseio</option>
+                        <option value="Plaça">Plaça</option>
+                        <option value="Praza">Praza</option>
+                        <option value="Placa">Placa</option>
+                        <option value="Plazuela">Plazuela</option>
+                        <option value="Poligon">Poligon</option>
+                        <option value="Senda">Senda</option>
+                        <option value="Subida">Subida</option>
+                        <option value="Torrente">Torrente</option>
+                        <option value="Torrent">Torrent</option>
+                        <option value="Travessia">Travessia</option>
+                        <option value="Travessera">Travessera</option>
+                        <option value="Urbanitzacio">Urbanitzacio</option>
+                      </select>
+                    </label>
+                    <p class="msg-error">Selecciona</p>
+                  </div>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-md" placeholder="Nombre de la vía" name="calle" id="direccion" required="">
+                    <p class="msg-error">El campo está vacío</p>
+                  </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <input type="number" class="form-control input-md" data-toggle="tooltip" title="" placeholder="Número" name="numero" required="" id="numero-direccion" data-original-title="si es s/n pon un 0">
+                    <p class="msg-error">El campo está vacío</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row inputs-valida" data-id="entrada">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-md" name="codigo_postal" placeholder="Cód. Postal" id="codigo-postal" maxlength="5" onchange="dameCodPostal('codigo-postal','provincia')" required="">
+                    <p class="msg-error">El campo está vacío</p>
+                  </div>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-md" placeholder="Introduce tu localidad" name="localidad" id="localidad" required="">
+                    <p class="msg-error">El campo está vacío</p>
+                  </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group">
+                    <label class="custom-select">
+                      <select class="form-control" name="provincia" id="provincia" required="">
+                        <option value="">Provincia</option>
+                        <option value="Alava">Alava</option>
+                        <option value="Albacete">Albacete</option>
+                        <option value="Alicante">Alicante</option>
+                        <option value="Almeria">Almeria</option>
+                        <option value="Asturias">Asturias</option>
+                        <option value="Avila">Avila</option>
+                        <option value="Badajoz">Badajoz</option>
+                        <option value="Barcelona">Barcelona</option>
+                        <option value="Burgos">Burgos</option>
+                        <option value="Caceres">Caceres</option>
+                        <option value="Cadiz">Cadiz</option>
+                        <option value="Cantabria">Cantabria</option>
+                        <option value="Castellon">Castellon</option>
+                        <option value="Ceuta">Ceuta</option>
+                        <option value="Ciudad Real">Ciudad Real</option>
+                        <option value="Cordoba">Cordoba</option>
+                        <option value="A Coruña">A Coruña</option>
+                        <option value="Cuenca">Cuenca</option>
+                        <option value="Girona">Girona</option>
+                        <option value="Granada">Granada</option>
+                        <option value="Guadalajara">Guadalajara</option>
+                        <option value="Guipuzcoa">Guipuzcoa</option>
+                        <option value="Huelva">Huelva</option>
+                        <option value="Huesca">Huesca</option>
+                        <option value="Baleares">Baleares</option>
+                        <option value="Jaen">Jaen</option>
+                        <option value="Leon">Leon</option>
+                        <option value="Lleida">Lleida</option>
+                        <option value="Lugo">Lugo</option>
+                        <option value="Madrid">Madrid</option>
+                        <option value="Malaga">Malaga</option>
+                        <option value="Melilla">Melilla</option>
+                        <option value="Murcia">Murcia</option>
+                        <option value="Navarra">Navarra</option>
+                        <option value="Ourense">Ourense</option>
+                        <option value="Palencia">Palencia</option>
+                        <option value="Las Palmas">Las Palmas</option>
+                        <option value="Pontevedra">Pontevedra</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Salamanca">Salamanca</option>
+                        <option value="Santa Cruz De Tenerife">Santa Cruz De Tenerife</option>
+                        <option value="Segovia">Segovia</option>
+                        <option value="Sevilla">Sevilla</option>
+                        <option value="Soria">Soria</option>
+                        <option value="Tarragona">Tarragona</option>
+                        <option value="Teruel">Teruel</option>
+                        <option value="Toledo">Toledo</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="Valladolid">Valladolid</option>
+                        <option value="Vizcaya">Vizcaya</option>
+                        <option value="Zamora">Zamora</option>
+                        <option value="Zaragoza">Zaragoza</option>
+                      </select>
+                    </label>
+                    <p class="msg-error">Selecciona</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
       {{include('components/_botones.html.twig')}}
+
     </form>
 
     <img src="{{ asset('img/ilustracion-promo-producto-3.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">
+
   </div>
 
 {% endblock %}

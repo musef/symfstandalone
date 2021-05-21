@@ -14,11 +14,10 @@
         </h1>
       </div>
 
-      <div class="mod-purchasing-process-form">
-        {{include('components/_formulario_datos.html.twig')}}
-      </div>
-
-      <form method="post">
+      <form name="customerData" method="post">
+        <div class="mod-purchasing-process-form">
+          {{include('components/_formulario_datos.html.twig')}}
+        </div>
         {{include('components/_botones.html.twig')}}
       </form>
 
