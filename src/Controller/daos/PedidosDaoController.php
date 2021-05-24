@@ -90,4 +90,26 @@ class PedidosDaoController extends ServiceEntityRepository
 
         return true;
     }
+
+
+    public function record(PedidosClientes $pedido)
+
+    {
+        // $em instanceof EntityManager
+        $this->em->beginTransaction(); // suspend auto-commit
+        try {
+            $this->em->persist($pedido);
+            $this->em->flush();
+
+            $this->em->getConnection()->commit();
+
+            return $pedido->getId();
+
+        } catch (Exception $e) {
+
+            $this->em->getConnection()->rollBack();
+
+            return false;
+        }
+    }    
 }

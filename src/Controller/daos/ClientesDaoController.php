@@ -59,7 +59,7 @@ class ClientesDaoController extends ServiceEntityRepository
         return true;
     }
 
-    public function record($cliente)
+    public function record(Clientes $cliente)
 
     {
         // $em instanceof EntityManager
@@ -83,16 +83,47 @@ class ClientesDaoController extends ServiceEntityRepository
 
     /**
      */
-    public function edit(Clientes $Cliente)
+    public function update(Clientes $cliente)
     {
 
-        $id=$Cliente->id;
+        $updCliente=new Clientes;
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $product = $entityManager->getRepository(Product::class)->find($id);
+        // $em instanceof EntityManager
+        $this->em->beginTransaction(); // suspend auto-commit
+        try {
+
+            $updCliente = $this->em->getRepository(Clientes::class)->find($cliente->getId());
+
+            if (!is_null($updCliente)) {
 
 
-        $entityManager->flush();
+                $updCliente->setEnvioCp($cliente->getEnvioCp());
+                $updCliente->setEnvioLocalidad($cliente->getEnvioLocalidad());
+                $updCliente->setEnvioProvincia($cliente->getEnvioProvincia());
+                $updCliente->setEnvioDireccion($cliente->getEnvioDireccion());                
+
+                $this->em->persist($cliente);
+                $this->em->flush();
+    
+                $this->em->getConnection()->commit();
+    
+                return $cliente->getId();
+
+            } else {
+
+                return false;
+
+            }
+ 
+
+
+        } catch (Exception $e) {
+
+            $this->em->getConnection()->rollBack();
+
+            return false;
+        }
+
 
         return true;
     }

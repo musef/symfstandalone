@@ -21,7 +21,7 @@
               </div>
               <div class="mod-purchasing-process-confirmation-container-card-data-info">
                 <span id="VerificarDirección" class="mod-purchasing-process-confirmation-container-card-data-info-text">
-                  .
+                  {{direccion_entrega}}
                 </span>
               </div>
             </div>
@@ -35,12 +35,55 @@
               </div>
               <div class="mod-purchasing-process-confirmation-container-card-data-info">
                 <span id="VerificarNombre" class="mod-purchasing-process-confirmation-container-card-data-info-text">
-                  .
+                  {{datos_personales}}
                 </span>
               </div>
             </div>
             <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
             <a href="#" class="btn-block" title="Ir a edición de datos personales" target="_self">Ir a edición de datos personales</a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p></p>
+        <input type="radio" id="formapago1" name="formapago" value="tarjeta" checked="checked" style="width:18px;height:18px;-webkit-appearance: auto;">
+        <label for="formapago1">Tarjeta bancaria</label>
+
+        <input type="radio" id="formapago2" name="formapago" value="paypal" style="width:18px;height:18px;-webkit-appearance: auto;">
+        <label for="formapago2">Paypal</label>
+        <p></p>
+      </div>
+      <div class="mod-purchasing-process-form" id="formatarjeta" style="display:block">
+        <p class="mod-purchasing-process-text">Realizamos el cargo en esta tarjeta bancaria</p>
+        <div class="boxcontainer-input boxcontainer-input-33">
+          <div class="boxcontainer-input-group">
+            <div class="form-group">
+              <label class="control-label" for="bank">Número de tarjeta
+                <span class="boxcontainer-input-group-label-mandatory">*</span></label>
+              <input id="bank" name="bank" type="text" placeholder="0123 4567 8901 2345" class="form-control" minlength="29" maxlength="29">
+              <input id="bankconnect" name="bankconnect" type="button" class="form-control" minlength="29" maxlength="29" value="Pagar">
+              <p class="msg-error">
+                <span class="icon-moon icon-error-form-field"></span>
+                <span class="txt">Por favor, rellene el formulario</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mod-purchasing-process-form" id="formapaypal" style="display:none">
+        <p class="mod-purchasing-process-text">Realizar el pago mediante mi cuenta en Paypal</p>
+        <div class="boxcontainer-input boxcontainer-input-33">
+          <div class="boxcontainer-input-group">
+            <div class="form-group">
+              <label class="control-label" for="bank">Ir a Paypal
+                <span class="boxcontainer-input-group-label-mandatory">*</span></label>
+              <input id="paypalconnect" name="paypalconnect" type="button" class="form-control" minlength="29" maxlength="29" value="paypal">
+              <p class="msg-error">
+                <span class="icon-moon icon-error-form-field"></span>
+                <span class="txt">Por favor, rellene el formulario</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -67,6 +110,7 @@
     </div>
 
     <form method="post">
+      <input type="hidden" id="id_cliente" name="id_cliente" value="{{id_cliente}}">
       {{include('components/_botones.html.twig')}}
     </form>
 

@@ -131,6 +131,7 @@ class ClienteController extends AbstractController {
 
     }
 
+
     /**
      * @Route("/paso3")
      * Al pasar de pantalla, se realiza la grabación automática del cliente
@@ -142,6 +143,12 @@ class ClienteController extends AbstractController {
         $fec=date ('Y-m-d H:i:s',time());
        
         $idC = $request->request->get('id_cliente');
+
+        $calle="";
+        $cpostal="";
+        $localidad="";
+        $provincias=$this->getProvincias();
+        $selected="";
 
         // grabamos solo si el cliente no existe
         if ($idC == "0") {
@@ -209,8 +216,9 @@ class ClienteController extends AbstractController {
                 ]);            
             }
         } else {
-            // recuperamos el cliente
-            if (is_null($cdao->show($idC))) {
+            $cliente=$cdao->show($idC);
+            if (is_null($cliente)) {
+                  // cliente fallido o inexistente
                   $name = '';
                   $lastname = '';
                   $lastname2 = '';
@@ -233,35 +241,122 @@ class ClienteController extends AbstractController {
                         'url_continuar' => 'paso3',
                         'message' => 'Cliente inexistente'
                   ]);                  
+            } else {
+                  // recuperamos el cliente
+                  $calle=$cliente->getEnvioDireccion();
+                  $cpostal=$cliente->getEnvioCp();
+                  $localidad=$cliente->getEnvioLocalidad();
+                  $selected=$cliente->getEnvioProvincia(); 
             }
 
             $result=$idC;
         }
 
-
         return $this->render('paso3.html.twig',[
             'id_cliente'=>$result,
+            'calle' => $calle,
+            'cpostal' => $cpostal,
+            'localidad' => $localidad,
+            'provincias' => $provincias,
+            'selected' => $selected,         
             'url_volver'=>'paso2',
             'url_continuar'=>'paso4'
         ]);
 
     }
 
-
-
     /**
      * @Route("/paso4")
+     * Esta funcion complementa los datos del cliente, grabando los
+     * datos de envío
      * 
      * @return void
      */
-    public function paso4() {
+    public function paso4(Request $request, ClientesDaoController $cdao) {
 
-        return $this->render('paso4.html.twig',[
-            'url_volver'=>'paso3',
-            'url_continuar'=>'finalizar'
-        ]);
 
-    }
+
+      $direccionEntrega="";
+      $datosPersonales="";
+      
+      $idC = $request->request->get('id_cliente');
+
+      // todos campos son requeridos
+      $calle = $request->request->get('calle');
+      $cpostal = $request->request->get('codigo_postal');
+      $localidad = $request->request->get('localidad');
+      $provincia = $request->request->get('provincia');
+
+      // grabamos solo si hay cliente
+      if ($idC != "0") {
+
+
+          if ( is_null($calle) || is_null($cpostal) || is_null($localidad) || is_null($provincia) ) {
+
+                  return $this->render('paso3.html.twig',[
+                      'id_cliente' => $idC,
+                      'calle' => $calle,
+                      'cpostal' => $cpostal,
+                      'localidad' => $localidad,
+                      'provincia' => $provincia,                      
+                      'url_volver'=>'paso2',
+                      'url_continuar'=>'paso4',
+                      'message'=> 'Faltan datos en el formulario'
+                  ]);
+          }
+
+          // obtenemos el cliente
+          $cliente=new Clientes;
+          $cliente=$cdao->show($idC);
+
+          $cliente->setEnvioCp($cpostal);
+          $cliente->setEnvioLocalidad($localidad);
+          $cliente->setEnvioProvincia($provincia);
+          $cliente->setEnvioDireccion($calle);
+
+          $result=$cdao->update($cliente);
+
+          if ($result===false) {
+              return $this->render('paso3.html.twig',[
+                  'id_cliente' => $idC,
+                  'calle' => $calle,
+                  'cpostal' => $cpostal,
+                  'localidad' => $localidad,
+                  'provincia' => $provincia,                      
+                  'url_volver'=>'paso2',
+                  'url_continuar'=>'paso4',
+                  'message'=> 'Error en la grabación del pedido'
+              ]);            
+          }
+
+          $datosPersonales=$cliente->getNombre().' '.$cliente->getApellido1().' '.$cliente->getApellido2().' - Movil: '.$cliente->getTlfMovil().' - Email: '.$cliente->getEmail();
+          $direccionEntrega=$calle.' '.$cpostal.' '.$localidad;
+
+      } else {
+              return $this->render('paso3.html.twig',[
+                  'id_cliente' => 0,
+                  'calle' => $calle,
+                  'cpostal' => $cpostal,
+                  'localidad' => $localidad,
+                  'provincia' => $provincia,                      
+                  'url_volver'=>'paso1',
+                  'url_continuar'=>'paso3',
+                  'message'=> 'Pedido sin cliente, rellene el paso 2'
+              ]);
+      }
+
+
+      return $this->render('paso4.html.twig',[
+              'id_cliente'=>$idC,
+              'direccion_entrega'=>$direccionEntrega,
+              'datos_personales'=>$datosPersonales,
+              'url_volver'=>'paso3',
+              'url_continuar'=>'finalizar'
+          ]);
+
+  }
+
+
 
     /**
      * @Route("/finalizar")
@@ -276,6 +371,20 @@ class ClienteController extends AbstractController {
 
     }
 
+
+    public function getProvincias() {
+            $arrayProv=array("Alava","Albacete","Alicante","Almeria",
+                  "Asturias","Avila","Badajoz","Barcelona","Burgos","Caceres",
+                  "Cadiz","Cantabria","Castellon","Ceuta","Ciudad Real","Cordoba","A Coruña",
+                  "Cuenca","Girona","Granada","Guadalajara","Guipuzcoa","Huelva","Huesca",
+                  "Baleares","Jaen","Leon","Lleida","Lugo","Madrid","Malaga","Melilla",
+                  "Murcia","Navarra","Ourense","Palencia","Las Palmas","Pontevedra","La Rioja",
+                  "Salamanca","Santa Cruz De Tenerife","Segovia","Sevilla","Soria",
+                  "Tarragona","Teruel","Toledo","Valencia","Valladolid",
+                  "Vizcaya","Zamora","Zaragoza");
+      
+      return $arrayProv;
+    }
 }
 
 
