@@ -7,9 +7,29 @@ $(document).ready(function () {
     // quitamos los items de borrado
     $('[id^=product_delete]').remove();
 
+    $('#continuar-a-datos').click(
+        (event)=>{           
+            if ($('#check_legal').prop('checked') != true) {
+                event.preventDefault();
+                console.log("Check legal no pulsado");
+                alert ('Debe pulsar el check de aceptación de condiciones legales');
+            } else {
+                console.log("finalizar pulsado");
+                $('#std_carrito').val(sessionStorage.getItem('std_carrito'));
+                $('#std_enviocarrito').val(sessionStorage.getItem('std_enviocarrito'));
+                $('#std_importecarrito').val(sessionStorage.getItem('std_importecarrito'));
+            }
+
+        }
+    );
+    $('#continuar-a-datos').prop('disabled','disabled');
 });
 
-
+$('#check_legal').click(
+    () => {
+        $('#continuar-a-datos').prop('disabled','');
+    }
+);
 
 /**
  * Esta funcion lee los datos del carritoprice almacenado en el sesionStorage
@@ -103,4 +123,48 @@ function addProductInCart(id, name, price) {
 
 }
 
+
+/**
+ * Funcion para grabar los datos en la DDBB tabla pedidos, y 
+ * pasar al siguiente paso del carrito
+ */
+
+ function finalizarPedido() {
+
+    let _token = $("input[name='_token']").val();
+    let datos = {
+        _token: _token,
+        id_cliente: $("#id_cliente").val(),
+        datos_direccion: $("#verificarDireccion").val(),
+        datos_cliente: $("#datosPersonales").val(),
+        datos_banco: $("#bank").val(),
+        datos_pedido: {
+            precio: sessionStorage.getItem('std_importecarrito'),
+            envio: sessionStorage.getItem('std_enviocarrito'),
+            carrito: sessionStorage.getItem('std_carrito')
+        }
+    }
+
+    const urlc = "http://localhost/symfstandalone/public/recordOrder";
+
+    $.post(
+        urlc,
+        datos,
+        function (result) {
+
+            console.log("Pedido efectuado: ");
+        },
+        "html"
+    ).fail(
+        () => {
+            console.log('error en pedido');
+        }
+    ).done(
+        () => {
+            console.log('order done');
+        }
+    );
+
+ 
+}
 

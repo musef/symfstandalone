@@ -22,7 +22,12 @@
         {% set url_continuar="#"%}
       {% endif %}
 
-      <button type="submit" name="continuar" id="continuar-a-datos" class="btn btn-primary btn-md" title="Siguiente página" formaction="{{url_continuar}}">Continuar</button>
+      {% if pasoFinal is not defined %}
+        <button type="submit" name="continuar" id="continuar-a-datos" class="btn btn-primary btn-md" title="Siguiente página" formaction="{{url_continuar}}">Continuar</button>
+      {% else %}
+        <button type="submit" name="continuar" id="continuar-a-datos" class="btn btn-primary btn-md" title="Siguiente página" formaction="{{url_continuar}}">Finalizar compra</button>
+      {% endif %}
+
     {% endif %}
 
   </div>

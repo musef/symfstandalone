@@ -5,113 +5,133 @@
 {% block content %}
 
   <div class="col-flex-xs-12 col-flex-sm-8 col-flex-md-8 col-flex-lg-8">
-    <div class="mod-purchasing-process">
-
-      <div class="mod-purchasing-process-confirmation">
-        <div class="mod-purchasing-process-confirmation-title">
-          <span class="mod-purchasing-process-confirmation-title-text">Antes de verificar la compra, compruebe que está todo correcto</span>
-        </div>
-        <p class="mod-purchasing-process-confirmation-subtitle">Por favor, verifique sus datos y confirme tu compra.</p>
-        <p class="mod-purchasing-process-confirmation-subtitle">Una vez finalizada la compra, nos pondremos en contacto con usted para comunicarle la agencia de transporte y fecha de envío.</p>
-        <div class="mod-purchasing-process-confirmation-container">
-          <div class="mod-purchasing-process-confirmation-container-card">
-            <div class="mod-purchasing-process-confirmation-container-card-data">
-              <div class="mod-purchasing-process-confirmation-container-card-data-title">
-                <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Dirección entrega</span>
+    <form method="post">
+      {% if id_cliente is defined %}
+        <input type="hidden" id="id_cliente" name="id_cliente" value="{{id_cliente}}">
+      {% else %}
+        <input type="hidden" id="id_cliente" name="id_cliente" value="0">
+      {% endif %}
+      <input type="hidden" id="std_carrito" name="std_carrito" value="">
+      <input type="hidden" id="std_importecarrito" name="std_importecarrito" value="">
+      <input type="hidden" id="std_enviocarrito" name="std_enviocarrito" value="">
+      <div class="mod-purchasing-process">
+        <div class="mod-purchasing-process-confirmation">
+          <div class="mod-purchasing-process-confirmation-title">
+            <span class="mod-purchasing-process-confirmation-title-text">Antes de verificar la compra, compruebe que está todo correcto</span>
+          </div>
+          <p class="mod-purchasing-process-confirmation-subtitle">Por favor, verifique sus datos y confirme tu compra.</p>
+          <p class="mod-purchasing-process-confirmation-subtitle">Una vez finalizada la compra, nos pondremos en contacto con usted para comunicarle la agencia de transporte y fecha de envío.</p>
+          <div class="mod-purchasing-process-confirmation-container">
+            <div class="mod-purchasing-process-confirmation-container-card">
+              <div class="mod-purchasing-process-confirmation-container-card-data">
+                <div class="mod-purchasing-process-confirmation-container-card-data-title">
+                  <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Dirección entrega</span>
+                </div>
+                <div class="mod-purchasing-process-confirmation-container-card-data-info">
+                  {% if direccion_entrega is defined %}
+                    <textarea id="verificarDireccion" name="verificarDireccion" style="border:0px;width:100%;min-height:50px;">{{direccion_entrega}}</textarea>
+                  {% else %}
+                    <textarea id="verificarDireccion" name="verificarDireccion" style="border:0px;width:100%;min-height:50px;"></textarea>
+                  {% endif %}
+                </div>
               </div>
-              <div class="mod-purchasing-process-confirmation-container-card-data-info">
-                <span id="VerificarDirección" class="mod-purchasing-process-confirmation-container-card-data-info-text">
-                  {{direccion_entrega}}
-                </span>
+              <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
+              <a href="#" class="btn-block" title="Ir a edición de datos de direccion" target="_self">Ir a edición de datos de dirección</a>
+            </div>
+            <div class="mod-purchasing-process-confirmation-container-card">
+              <div class="mod-purchasing-process-confirmation-container-card-data">
+                <div class="mod-purchasing-process-confirmation-container-card-data-title">
+                  <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Datos personales</span>
+                </div>
+                <div class="mod-purchasing-process-confirmation-container-card-data-info">
+                  {% if datos_personales is defined %}
+                    <textarea id="datosPersonales" name="datosPersonales" style="border:0px;width:100%;min-height:50px;">{{datos_personales}}</textarea>
+                  {% else %}
+                    <textarea id="datosPersonales" name="datosPersonales" style="border:0px;width:100%;min-height:50px;"></textarea>
+                  {% endif %}
+
+                </div>
+              </div>
+              <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
+              <a href="#" class="btn-block" title="Ir a edición de datos personales" target="_self">Ir a edición de datos personales</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p></p>
+          <input type="radio" id="formapago1" name="formapago" value="tarjeta" checked="checked" style="width:18px;height:18px;-webkit-appearance: auto;">
+          <label for="formapago1">Tarjeta bancaria</label>
+
+          <input type="radio" id="formapago2" name="formapago" value="paypal" style="width:18px;height:18px;-webkit-appearance: auto;">
+          <label for="formapago2">Paypal</label>
+          <p></p>
+        </div>
+        <div class="mod-purchasing-process-form" id="formatarjeta" style="display:block">
+          <p class="mod-purchasing-process-text">Realizamos el cargo en esta tarjeta bancaria</p>
+          <div class="boxcontainer-input boxcontainer-input-33">
+            <div class="boxcontainer-input-group">
+              <div class="form-group">
+                <label class="control-label" for="bank">Número de tarjeta
+                  <span class="boxcontainer-input-group-label-mandatory">*</span></label>
+                <input id="bank" name="bank" type="text" placeholder="0123 4567 8901 2345" class="form-control" maxlength="29" value="{{datos_banco}}">
+                <input id="bankconnect" name="bankconnect" type="button" class="form-control" minlength="29" maxlength="29" value="Pagar">
+                <p class="msg-error">
+                  <span class="icon-moon icon-error-form-field"></span>
+                  <span class="txt">Por favor, rellene el formulario</span>
+                </p>
               </div>
             </div>
-            <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
-            <a href="#" class="btn-block" title="Ir a edición de datos de direccion" target="_self">Ir a edición de datos de dirección</a>
-          </div>
-          <div class="mod-purchasing-process-confirmation-container-card">
-            <div class="mod-purchasing-process-confirmation-container-card-data">
-              <div class="mod-purchasing-process-confirmation-container-card-data-title">
-                <span class="mod-purchasing-process-confirmation-container-card-data-title-text">Datos personales</span>
-              </div>
-              <div class="mod-purchasing-process-confirmation-container-card-data-info">
-                <span id="VerificarNombre" class="mod-purchasing-process-confirmation-container-card-data-info-text">
-                  {{datos_personales}}
-                </span>
-              </div>
-            </div>
-            <div class="mod-purchasing-process-confirmation-container-card-icon"></div>
-            <a href="#" class="btn-block" title="Ir a edición de datos personales" target="_self">Ir a edición de datos personales</a>
           </div>
         </div>
-      </div>
+        <div class="mod-purchasing-process-form" id="formapaypal" style="display:none">
+          <p class="mod-purchasing-process-text">Realizar el pago mediante mi cuenta en Paypal</p>
+          <div class="boxcontainer-input boxcontainer-input-33">
+            <div class="boxcontainer-input-group">
+              <div class="form-group">
+                <label class="control-label" for="bank">Ir a Paypal
+                  <span class="boxcontainer-input-group-label-mandatory">*</span></label>
+                <input id="paypalconnect" name="paypalconnect" type="button" class="form-control" minlength="29" maxlength="29" value="paypal">
+                <p class="msg-error">
+                  <span class="icon-moon icon-error-form-field"></span>
+                  <span class="txt">Por favor, rellene el formulario</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div>
-        <p></p>
-        <input type="radio" id="formapago1" name="formapago" value="tarjeta" checked="checked" style="width:18px;height:18px;-webkit-appearance: auto;">
-        <label for="formapago1">Tarjeta bancaria</label>
-
-        <input type="radio" id="formapago2" name="formapago" value="paypal" style="width:18px;height:18px;-webkit-appearance: auto;">
-        <label for="formapago2">Paypal</label>
-        <p></p>
-      </div>
-      <div class="mod-purchasing-process-form" id="formatarjeta" style="display:block">
-        <p class="mod-purchasing-process-text">Realizamos el cargo en esta tarjeta bancaria</p>
-        <div class="boxcontainer-input boxcontainer-input-33">
+        <div class="boxcontainer-input boxcontainer-input-50">
           <div class="boxcontainer-input-group">
-            <div class="form-group">
-              <label class="control-label" for="bank">Número de tarjeta
-                <span class="boxcontainer-input-group-label-mandatory">*</span></label>
-              <input id="bank" name="bank" type="text" placeholder="0123 4567 8901 2345" class="form-control" minlength="29" maxlength="29">
-              <input id="bankconnect" name="bankconnect" type="button" class="form-control" minlength="29" maxlength="29" value="Pagar">
-              <p class="msg-error">
-                <span class="icon-moon icon-error-form-field"></span>
-                <span class="txt">Por favor, rellene el formulario</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mod-purchasing-process-form" id="formapaypal" style="display:none">
-        <p class="mod-purchasing-process-text">Realizar el pago mediante mi cuenta en Paypal</p>
-        <div class="boxcontainer-input boxcontainer-input-33">
-          <div class="boxcontainer-input-group">
-            <div class="form-group">
-              <label class="control-label" for="bank">Ir a Paypal
-                <span class="boxcontainer-input-group-label-mandatory">*</span></label>
-              <input id="paypalconnect" name="paypalconnect" type="button" class="form-control" minlength="29" maxlength="29" value="paypal">
-              <p class="msg-error">
-                <span class="icon-moon icon-error-form-field"></span>
-                <span class="txt">Por favor, rellene el formulario</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="boxcontainer-input boxcontainer-input-50">
-        <div class="boxcontainer-input-group">
-          <form class="checkbox-radio">
             <fieldset>
               <div class="form-group">
                 <div class="checkbox checkbox-primary">
-                  <input type="checkbox" name="checkbox2" id="checkbox2" value="option1">
-                  <label for="checkbox2">Acepte las condiciones legales</label>
-                  <p class="msg-error">
-                    <span class="icon-moon icon-error-form-field"></span>
-                    <span class="txt">Por favor, elija una opción</span>
-                  </p>
+                  <input type="checkbox" name="check_legal" id="check_legal" value="legal_checked" style="width:18px;height:18px;-webkit-appearance: auto;">
+                  <label for="check_legal">Debes aceptar las condiciones legales *</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox checkbox-primary">
+                  <input type="checkbox" name="check_cesion_datos" id="check_cesion_datos" value="cesion_checked" style="width:18px;height:18px;-webkit-appearance: auto;">
+                  <label for="check_cesion_datos">Acepta cesión datos para acciones comerciales</label>
                 </div>
               </div>
             </fieldset>
-          </form>
+          </div>
         </div>
+
       </div>
 
-    </div>
+      <div class="boxcontainer-input boxcontainer-input-33">
+        {% if message is defined%}
+          <div class="boxcontainer-input-group bg-red">
+            <h3>{{message}}</h3>
+          </div>
+        {% endif %}
+      </div>
 
-    <form method="post">
-      <input type="hidden" id="id_cliente" name="id_cliente" value="{{id_cliente}}">
       {{include('components/_botones.html.twig')}}
+
     </form>
 
     <img src="{{ asset('img/ilustracion-promo-producto.svg')}}" class="img-responsive" alt="img promo" title="Image Promo">

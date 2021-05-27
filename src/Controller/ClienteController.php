@@ -278,6 +278,7 @@ class ClienteController extends AbstractController {
 
       $direccionEntrega="";
       $datosPersonales="";
+      $bankpay="";
       
       $idC = $request->request->get('id_cliente');
 
@@ -350,24 +351,11 @@ class ClienteController extends AbstractController {
               'id_cliente'=>$idC,
               'direccion_entrega'=>$direccionEntrega,
               'datos_personales'=>$datosPersonales,
+              'datos_banco'=>$bankpay,
+              'pasoFinal'=>true,
               'url_volver'=>'paso3',
               'url_continuar'=>'finalizar'
           ]);
-
-  }
-
-
-
-    /**
-     * @Route("/finalizar")
-     * 
-     * @return void
-     */
-    public function finalizar() {
-
-        return $this->render('compra_confirmada.html.twig',[
-            'pedido'=>'XXX9999'
-        ]);
 
     }
 

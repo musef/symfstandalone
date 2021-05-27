@@ -102,7 +102,7 @@ class ClientesDaoController extends ServiceEntityRepository
                 $updCliente->setEnvioProvincia($cliente->getEnvioProvincia());
                 $updCliente->setEnvioDireccion($cliente->getEnvioDireccion());                
 
-                $this->em->persist($cliente);
+                $this->em->persist($updCliente);
                 $this->em->flush();
     
                 $this->em->getConnection()->commit();
@@ -128,5 +128,49 @@ class ClientesDaoController extends ServiceEntityRepository
         return true;
     }
 
+
+
+    /**
+     */
+    public function updatePaymentAndCheks($id, $payment, $legal, $cesion)
+    {
+
+        $updCliente=new Clientes;
+
+        // $em instanceof EntityManager
+        $this->em->beginTransaction(); // suspend auto-commit
+        try {
+
+            $updCliente = $this->em->getRepository(Clientes::class)->find($id);
+
+            if (!is_null($updCliente)) {
+
+                $updCliente->setCuentaIban($payment);               
+                $updCliente->setCheckConfidencialidad($legal);
+                $updCliente->setCheckDatos($cesion);
+
+                $this->em->persist($updCliente);
+                $this->em->flush();
+    
+                $this->em->getConnection()->commit();
+    
+                return $updCliente->getId();
+
+            } else {
+
+                return false;
+
+            }
+
+        } catch (Exception $e) {
+
+            $this->em->getConnection()->rollBack();
+
+            return false;
+        }
+
+
+        return true;
+    }    
 
 }

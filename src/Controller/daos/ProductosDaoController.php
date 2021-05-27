@@ -77,50 +77,5 @@ class ProductosDaoController extends ServiceEntityRepository
     }
 
 
-    /**
-     */
-    public function new($producto)
-    {
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($producto);
-        $entityManager->flush();
-
-        return true;
-    }
-
-
-
-
-
-    /**
-     */
-    public function edit(Productos $producto)
-    {
-
-        $id=$producto->id;
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $product = $entityManager->getRepository(Product::class)->find($id);
-
-
-        $entityManager->flush();
-
-        return true;
-    }
-
-
-    /**
-     */
-    public function delete($id)
-    {
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $producto = $entityManager->getRepository(Productos::class)->find($id);
-
-        $entityManager->remove($producto);
-        $entityManager->flush();
-
-        return true;
-    }
 }
