@@ -69,6 +69,13 @@ class Productos
         return $this->id;
     }
 
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getCodigo(): ?string
     {
         return $this->codigo;

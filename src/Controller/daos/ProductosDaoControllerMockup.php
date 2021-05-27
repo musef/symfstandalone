@@ -14,7 +14,7 @@ use App\Controller\daos\interfaces\interfaceProductosDao;
 
 /**
  */
-class ProductosDaoController extends ServiceEntityRepository implements interfaceProductosDao
+class ProductosDaoControllerMockup extends ServiceEntityRepository 
 {
 
 
@@ -37,25 +37,21 @@ class ProductosDaoController extends ServiceEntityRepository implements interfac
     public function list()
     {
 
-        $limit=6;
+        $producto = new Productos;
+        $producto->setId("1");
+        $producto->setNombre("Producto FAKE");
+        $producto->setCategoria("PC");
+        $producto->setPrecioBase("99.99");
+        $producto->setPrecioPromo("88.88");
 
-        $qb = $this->em->createQueryBuilder();
+        $producto2 = new Productos;
+        $producto2->setId("2");
+        $producto2->setNombre("Producto FAKE DIFERENTE");
+        $producto2->setCategoria("PC");
+        $producto2->setPrecioBase("55.55");
+        $producto2->setPrecioPromo("49.99");
 
-        $qb->select('p')
-        ->from('App\Entity\Productos', 'p')
-        ->where('p.id < :idmax AND p.categoria = :categoria')
-        ->orderBy('p.precioPromo', 'ASC')
-        ->setMaxResults( $limit ); 
-        
-        $qb->setParameters(new ArrayCollection([
-            new Parameter('idmax', '99'),
-            new Parameter('categoria', 'PC')
-        ]));
-        
-
-        $query = $qb->getQuery();
-
-        $productos = $query->execute();
+        $productos=array($producto, $producto2);
 
         return $productos;
     }
@@ -69,9 +65,12 @@ class ProductosDaoController extends ServiceEntityRepository implements interfac
      */
     public function show($id)
     {
-        $producto = $this->em
-            ->getRepository(Productos::class)
-            ->find($id);
+        $producto = new Productos;
+        $producto->setId("1");
+        $producto->setNombre("Producto FAKE");
+        $producto->setCategoria("PC");
+        $producto->setPrecioBase("99.99");
+        $producto->setPrecioPromo("88.88");
 
         return $producto;
     }

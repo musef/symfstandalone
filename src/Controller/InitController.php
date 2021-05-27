@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Controller\daos\ProductosDaoController;
+use App\Controller\daos\interfaces\interfaceProductosDao;
 
 
 
@@ -21,7 +21,7 @@ class InitController extends AbstractController {
      *
      * @return void
      */
-    public function init(ProductosDaoController $daoP) {
+    public function init(interfaceProductosDao $daoP) {
 
         $productos=$daoP->list();
 
@@ -39,7 +39,7 @@ class InitController extends AbstractController {
      *
      * @return void
      */
-    public function paso1(Request $request, ProductosDaoController $daoP) {
+    public function paso1(Request $request, interfaceProductosDao $daoP) {
 
         $idC = $request->request->get('id_cliente');
 
@@ -63,7 +63,7 @@ class InitController extends AbstractController {
      * @param ProductosDaoController $daoP
      * @return void
      */
-    public function miga1(ProductosDaoController $daoP) {
+    public function miga1(interfaceProductosDao $daoP) {
 
         $productos=$daoP->list();
 

@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Productos;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,9 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use App\Entity\Productos;
+use App\Controller\daos\interfaces\interfaceProductosDao;
+
 /**
  */
-class ProductosController extends AbstractController
+class ProductosController extends AbstractController 
 {
 
     private $entityManager;
@@ -25,84 +26,41 @@ class ProductosController extends AbstractController
 
     }
 
+    /**
+     * @Route ("/api/products/product/{idProducto}")
+     *
+     * @param [type] $idProducto
+     * @param interfaceProductosDao $cdao
+     * @return void
+     */
+    public function show($idProducto=0, interfaceProductosDao $cdao) {
+        
+        $result=$cdao->show($idProducto);
+
+        $jsonResponse = $result;
+
+        return $this->json([
+            'status'=>'OK',
+            'message'=>'Producto obtenido',
+            'data'=>$jsonResponse
+        ]);        
+    }
 
     /**
+     * @Route ("/api/products/list")
      *
      * @return void
      */
-    public function list()
-    {
-        $productos = $this->entityManager
-                ->getRepository(Productos::class)->findAll();
+    public function list (interfaceProductosDao $cdao) {
 
-        return $productos;
-    }
+        $result=$cdao->list();
 
-    /**
-     * @Route("/new", name="productos_dao_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $producto = new Productos();
-        $form = $this->createForm(ProductosType::class, $producto);
-        $form->handleRequest($request);
+        $jsonResponse = $result;
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($producto);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('productos_dao_index');
-        }
-
-        return $this->render('productos_dao/new.html.twig', [
-            'producto' => $producto,
-            'form' => $form->createView(),
+        return $this->json([
+            'status'=>'OK',
+            'message'=>'Listado de productos obtenido',
+            'data'=>$jsonResponse
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="productos_dao_show", methods={"GET"})
-     */
-    public function show(Productos $producto): Response
-    {
-        return $this->render('productos_dao/show.html.twig', [
-            'producto' => $producto,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="productos_dao_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Productos $producto): Response
-    {
-        $form = $this->createForm(ProductosType::class, $producto);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('productos_dao_index');
-        }
-
-        return $this->render('productos_dao/edit.html.twig', [
-            'producto' => $producto,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="productos_dao_delete", methods={"POST"})
-     */
-    public function delete(Request $request, Productos $producto): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$producto->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($producto);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('productos_dao_index');
     }
 }
-

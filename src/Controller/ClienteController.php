@@ -10,7 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Controller\daos\ClientesDaoController;
+
+use App\Controller\daos\interfaces\interfaceClientesDao;
 
 class ClienteController extends AbstractController {
 
@@ -71,7 +72,7 @@ class ClienteController extends AbstractController {
      * 
      * @return void
      */
-    public function paso2(Request $request, ClientesDaoController $cdao) {
+    public function paso2(Request $request, interfaceClientesDao $cdao) {
 
       $idC = $request->request->get('id_cliente');
 
@@ -138,7 +139,7 @@ class ClienteController extends AbstractController {
      * 
      * @return void
      */
-    public function paso3(Request $request, ClientesDaoController $cdao) {
+    public function paso3(Request $request, interfaceClientesDao $cdao) {
 
         $fec=date ('Y-m-d H:i:s',time());
        
@@ -272,7 +273,7 @@ class ClienteController extends AbstractController {
      * 
      * @return void
      */
-    public function paso4(Request $request, ClientesDaoController $cdao) {
+    public function paso4(Request $request, interfaceClientesDao $cdao) {
 
 
 

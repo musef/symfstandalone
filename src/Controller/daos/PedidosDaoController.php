@@ -2,18 +2,18 @@
 
 namespace App\Controller\daos;
 
-use App\Entity\PedidosClientes;
-
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query\Parameter;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use App\Entity\PedidosClientes;
+use App\Controller\daos\interfaces\interfacePedidosDao;
 
 /**
  */
-class PedidosDaoController extends ServiceEntityRepository
+class PedidosDaoController extends ServiceEntityRepository implements interfacePedidosDao
 {
 
 

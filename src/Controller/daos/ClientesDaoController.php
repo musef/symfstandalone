@@ -2,7 +2,7 @@
 
 namespace App\Controller\daos;
 
-use App\Entity\Clientes;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -11,10 +11,13 @@ use Doctrine\ORM\Query\Parameter;
 
 use Doctrine\ORM\EntityManagerInterface;
 
+use App\Entity\Clientes;
+use App\Controller\daos\interfaces\interfaceClientesDao;
+
 
 /**
  */
-class ClientesDaoController extends ServiceEntityRepository
+class ClientesDaoController extends ServiceEntityRepository implements interfaceClientesDao
 {
 
     private $em;
@@ -43,21 +46,6 @@ class ClientesDaoController extends ServiceEntityRepository
         return $cliente;
     }
 
-
-    /**
-     * Esta fun
-     *
-     * @param [type] $Cliente
-     * @return void
-     */
-    public function new(Clientes $Cliente)
-    {
-
-        $this->em->persist($Cliente);
-        $this->em->flush();
-
-        return true;
-    }
 
     public function record(Clientes $cliente)
 
