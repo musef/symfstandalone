@@ -16,6 +16,7 @@ $(document).ready(function () {
     }
 
     $('.progress').css('width','17%');
+    $('.step.1 div.step-number').css('background-color','orange');
 
 });
 
@@ -40,16 +41,7 @@ $('[id^="prd_"]').click(
         }
     }
 );
-/*
-$('#continuar-a-datos').click(
-    function (event) {
-        event.preventDefault();
-        continuar();
 
-    }
-
-);
-*/
 
 /**
  * Esta funcion inicializa las variables del carrito, cuando se
@@ -270,7 +262,7 @@ function addProductInCart(id, name, price) {
 function deleteBasket(idDel) {
 
     // extraemos el id
-    let id = idDel.replace('product_delete', '');
+    let id = idDel.replace('product_delete', '');    
 
     // modificamos colores en selector del DOM
     if ($('#prd_' + id).hasClass('color-black')) {
@@ -280,6 +272,7 @@ function deleteBasket(idDel) {
         $('#prd_' + id).attr('data-sel', '');
         uncheckProduct(id, "0");
     }
+
 }
 
 /**

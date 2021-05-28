@@ -2,6 +2,10 @@ $(document).ready(function () {
 
 
     $('.progress').css('width','51%');
+    $('.step.1 div.step-number').css('background-color','orange');
+    $('.step.2 div.step-number').css('background-color','orange');
+    $('.step.3 div.step-number').css('background-color','orange');
+
     // restauramos carritoprice
     readStoredCart();    
     // quitamos los items de borrado

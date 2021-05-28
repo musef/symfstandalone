@@ -2,6 +2,11 @@ $(document).ready(function () {
 
 
     $('.progress').css('width','68%');
+    $('.step.1 div.step-number').css('background-color','orange');
+    $('.step.2 div.step-number').css('background-color','orange');
+    $('.step.3 div.step-number').css('background-color','orange');
+    $('.step.4 div.step-number').css('background-color','orange'); 
+        
     // restauramos carritoprice
     readStoredCart();    
     // quitamos los items de borrado
@@ -23,6 +28,8 @@ $(document).ready(function () {
         }
     );
     $('#continuar-a-datos').prop('disabled','disabled');
+
+
 });
 
 $('#check_legal').click(

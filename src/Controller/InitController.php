@@ -57,22 +57,5 @@ class InitController extends AbstractController {
 
     }    
 
-    /**
-     * @Route("/nav1", name="paso_1")  
-     *
-     * @param ProductosDaoController $daoP
-     * @return void
-     */
-    public function miga1(interfaceProductosDao $daoP) {
 
-        $productos=$daoP->list();
-
-        return $this->render('index.html.twig',[
-            'id_cliente' => '0',
-            'productos'=>$productos,
-            'vdisabled'=>'disabled',
-            'url_continuar'=>'paso2'
-        ]);
-
-    }
 }

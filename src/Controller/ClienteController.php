@@ -17,56 +17,6 @@ class ClienteController extends AbstractController {
 
 
 
-
-      /**
-       * @Route("/nav2", name="paso_2")
-       * Pasa pantalla por rastro migas
-       * 
-       * @return void
-       */
-      public function miga2() {
-
-            return $this->render('paso2.html.twig',[
-                  'id_cliente'=>"0",
-                  'url_volver'=>'paso1',
-                  'url_continuar'=>'paso3'
-            ]);
-
-      }      
-
-      /**
-       * @Route("/nav3", name="paso_3")
-       * Pasa pantalla por rastro migas
-       * 
-       * @return void
-       */
-      public function miga3() {
-
-            return $this->render('paso3.html.twig',[
-                  'id_cliente'=>"0",
-                  'url_volver'=>'paso2',
-                  'url_continuar'=>'paso4'
-            ]);
-
-      }
-
-      /**
-       * @Route("/nav4", name="paso_4")
-       * 
-       * @return void
-       */
-      public function miga4() {
-
-            return $this->render('paso4.html.twig',[
-                  'url_volver'=>'paso3',
-                  'url_continuar'=>'finalizar'
-            ]);
-
-      }
-
-
-
-
     /**
      * @Route("/paso2")
      * 
