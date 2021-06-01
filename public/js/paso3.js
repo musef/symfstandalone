@@ -14,6 +14,9 @@ $(document).ready(function () {
 });
 
 
+var url_raiz = document.location.origin + "/symfstandalone/public/";
+var url_templates = document.location.origin + "/symfstandalone/templates/";
+
 
 /**
  * Esta funcion lee los datos del carritoprice almacenado en el sesionStorage
@@ -80,7 +83,7 @@ $(document).ready(function () {
  */
 function addProductInCart(id, name, price) {
 
-    fetch('http://localhost/stdalone/resources/views/templates/producto_carrito.blade.php')
+    fetch(url_templates + 'components/producto_carrito.html.twig')
         .then(function (response) {
             if (response.ok) {
                 let resp = response.text().then(function (data) {
@@ -99,7 +102,7 @@ function addProductInCart(id, name, price) {
             } else {
                 console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
-        }).then(data => console.log(data))
+        })
         .catch(function (error) {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });

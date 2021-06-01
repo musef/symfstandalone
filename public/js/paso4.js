@@ -32,6 +32,11 @@ $(document).ready(function () {
 
 });
 
+
+var url_raiz = document.location.origin + "/symfstandalone/public/";
+var url_templates = document.location.origin + "/symfstandalone/templates/";
+
+
 $('#check_legal').click(
     () => {
         $('#continuar-a-datos').prop('disabled','');
@@ -103,7 +108,7 @@ $('#check_legal').click(
  */
 function addProductInCart(id, name, price) {
 
-    fetch('http://localhost/stdalone/resources/views/templates/producto_carrito.blade.php')
+    fetch(url_templates + 'components/producto_carrito.html.twig')
         .then(function (response) {
             if (response.ok) {
                 let resp = response.text().then(function (data) {
@@ -122,56 +127,11 @@ function addProductInCart(id, name, price) {
             } else {
                 console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
-        }).then(data => console.log(data))
+        })
         .catch(function (error) {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
 
 
-}
-
-
-/**
- * Funcion para grabar los datos en la DDBB tabla pedidos, y 
- * pasar al siguiente paso del carrito
- */
-
- function finalizarPedido() {
-
-    let _token = $("input[name='_token']").val();
-    let datos = {
-        _token: _token,
-        id_cliente: $("#id_cliente").val(),
-        datos_direccion: $("#verificarDireccion").val(),
-        datos_cliente: $("#datosPersonales").val(),
-        datos_banco: $("#bank").val(),
-        datos_pedido: {
-            precio: sessionStorage.getItem('std_importecarrito'),
-            envio: sessionStorage.getItem('std_enviocarrito'),
-            carrito: sessionStorage.getItem('std_carrito')
-        }
-    }
-
-    const urlc = "http://localhost/symfstandalone/public/recordOrder";
-
-    $.post(
-        urlc,
-        datos,
-        function (result) {
-
-            console.log("Pedido efectuado: ");
-        },
-        "html"
-    ).fail(
-        () => {
-            console.log('error en pedido');
-        }
-    ).done(
-        () => {
-            console.log('order done');
-        }
-    );
-
- 
 }
 

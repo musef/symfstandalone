@@ -20,6 +20,11 @@ $(document).ready(function () {
 
 });
 
+
+var url_raiz = document.location.origin + "/symfstandalone/public/";
+var url_templates = document.location.origin + "/symfstandalone/templates/";
+
+
 $('[id^="prd_"]').click(
     function () {
         // extraemos el id
@@ -232,7 +237,7 @@ function deleteProductInCart(id = 0) {
  */
 function addProductInCart(id, name, price) {
 
-    fetch('http://localhost/stdalone/resources/views/templates/producto_carrito.blade.php')
+    fetch(url_templates + 'components/producto_carrito.html.twig')
         .then(function (response) {
             if (response.ok) {
                 let resp = response.text().then(function (data) {
@@ -251,7 +256,7 @@ function addProductInCart(id, name, price) {
             } else {
                 console.log('Respuesta de red OK pero respuesta HTTP no OK');
             }
-        }).then(data => console.log(data))
+        })
         .catch(function (error) {
             console.log('Hubo un problema con la petición Fetch:' + error.message);
         });
@@ -290,9 +295,9 @@ function continuar() {
         carrito: sessionStorage.getItem('std_carrito')
     }
 
-    const urlc = "http://localhost/symfstandalone/public/recordOrder";
+    const urlc = url_raiz + "recordOrder";
     
-    const url_continuar = "http://localhost/symfstandalone/public/paso2";
+    const url_continuar = url_raiz + "paso2";
 
     $.post(
         urlc,
