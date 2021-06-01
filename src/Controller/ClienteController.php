@@ -230,27 +230,31 @@ class ClienteController extends AbstractController {
       $direccionEntrega="";
       $datosPersonales="";
       $bankpay="";
+      $provincias=$this->getProvincias();
+      $selected="";
       
       $idC = $request->request->get('id_cliente');
 
       // todos campos son requeridos
-      $calle = $request->request->get('calle');
-      $cpostal = $request->request->get('codigo_postal');
-      $localidad = $request->request->get('localidad');
-      $provincia = $request->request->get('provincia');
+      $calle = trim($request->request->get('calle'));
+      $cpostal = trim($request->request->get('codigo_postal'));
+      $localidad = trim($request->request->get('localidad'));
+      $provincia = trim($request->request->get('provincia'));
 
       // grabamos solo si hay cliente
       if ($idC != "0") {
 
-
-          if ( is_null($calle) || is_null($cpostal) || is_null($localidad) || is_null($provincia) ) {
+          if ( is_null($calle) || is_null($cpostal) || is_null($localidad) || is_null($provincia) 
+              || strlen($calle) < 4 || strlen($cpostal) != 5 || strlen($localidad) < 2 || strlen ($provincia) < 4) {
 
                   return $this->render('paso3.html.twig',[
                       'id_cliente' => $idC,
                       'calle' => $calle,
                       'cpostal' => $cpostal,
                       'localidad' => $localidad,
-                      'provincia' => $provincia,                      
+                      'provincia' => $provincia, 
+                      'provincias' => $provincias,    
+                      'selected' => $selected,                 
                       'url_volver'=>'paso2',
                       'url_continuar'=>'paso4',
                       'message'=> 'Faltan datos en el formulario'
@@ -274,7 +278,9 @@ class ClienteController extends AbstractController {
                   'calle' => $calle,
                   'cpostal' => $cpostal,
                   'localidad' => $localidad,
-                  'provincia' => $provincia,                      
+                  'provincia' => $provincia,  
+                  'provincias' => $provincias,    
+                  'selected' => $selected,                     
                   'url_volver'=>'paso2',
                   'url_continuar'=>'paso4',
                   'message'=> 'Error en la grabación del pedido'
@@ -290,7 +296,9 @@ class ClienteController extends AbstractController {
                   'calle' => $calle,
                   'cpostal' => $cpostal,
                   'localidad' => $localidad,
-                  'provincia' => $provincia,                      
+                  'provincia' => $provincia, 
+                  'provincias' => $provincias,    
+                  'selected' => $selected,                                         
                   'url_volver'=>'paso1',
                   'url_continuar'=>'paso3',
                   'message'=> 'Pedido sin cliente, rellene el paso 2'
