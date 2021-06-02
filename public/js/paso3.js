@@ -14,10 +14,6 @@ $(document).ready(function () {
 });
 
 
-var url_raiz = document.location.origin + "/symfstandalone/public/";
-var url_templates = document.location.origin + "/symfstandalone/templates/";
-
-
 /**
  * Esta funcion lee los datos del carritoprice almacenado en el sesionStorage
  * y lo muestra en el carritoprice en el DOM 

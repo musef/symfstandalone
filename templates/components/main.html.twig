@@ -81,6 +81,16 @@
 
       {% block javascript_modules %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+          if (document.location.origin.search("localhost") > -1) {
+            var url_raiz = document.location.origin + "/symfstandalone/public/";
+            var url_templates = document.location.origin + "/symfstandalone/templates/";
+          } else {
+            var url_raiz = document.location.origin + "/symfonystore/public/";
+            var url_templates = document.location.origin + "/symfonystore/templates/";
+          }
+        </script>
+
       {% endblock %}
 
     </body>

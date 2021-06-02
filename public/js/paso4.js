@@ -33,10 +33,6 @@ $(document).ready(function () {
 });
 
 
-var url_raiz = document.location.origin + "/symfstandalone/public/";
-var url_templates = document.location.origin + "/symfstandalone/templates/";
-
-
 $('#check_legal').click(
     () => {
         $('#continuar-a-datos').prop('disabled','');
