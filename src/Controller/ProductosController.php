@@ -29,19 +29,38 @@ class ProductosController extends AbstractController
     /**
      * @Route ("/api/products/product/{idProducto}")
      *
-     * @param [type] $idProducto
+     * @param $idProducto
      * @param interfaceProductosDao $cdao
      * @return void
      */
     public function show($idProducto=0, interfaceProductosDao $cdao) {
         
+        
+        if  (!is_numeric($idProducto) || (intval($idProducto) != $idProducto)) {
+            
+            return $this->json([
+                'status'=>'KO',
+                'message'=>'Parámetro incorrecto',
+                'data' => null
+            ],400);            
+                        
+        }
+
         $result=$cdao->show($idProducto);
 
         $jsonResponse = $result;
 
+        if (is_null($jsonResponse)) {
+            return $this->json([
+                'status'=>'OK',
+                'message'=>'Producto inexistente',
+                'data'=>$jsonResponse
+            ],404);            
+        }
+
         return $this->json([
             'status'=>'OK',
-            'message'=>'Producto obtenido',
+            'message'=>'Producto obtenido mediante id',
             'data'=>$jsonResponse
         ]);        
     }
